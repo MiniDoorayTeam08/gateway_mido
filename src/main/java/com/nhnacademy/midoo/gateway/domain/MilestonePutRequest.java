@@ -6,7 +6,7 @@ import lombok.Value;
 @Value
 @AllArgsConstructor
 public class MilestonePutRequest {
-    int milestoneId;
+    long milestoneId;
     String milestoneName;
-    int projectId;
+    long projectId;
 }

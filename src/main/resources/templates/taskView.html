@@ -22,7 +22,12 @@
     <tr th:each="comment : ${comments}">
         <td th:text="${comment.commentContent}"></td>
         <td th:text="${comment.accountId}"></td>
-        <a th:href="@{/{commentId}/modify(commentId=${task.taskId})}" th:text="수정"></a>
+        <td th:if="${accountId} == ${comment.accountId}">
+            <a th:href="@{/{commentId}/modify(commentId=${comment.commentId})}" th:value="수정"></a>
+        </td>
+        <td th:unless="${accountId} == ${comment.accountId}">
+
+        </td>
     </tr>
     </tbody>
 </table>

@@ -4,7 +4,7 @@ import lombok.Value;
 
 @Value
 public class MilestoneResponse {
-    int milestoneId;
+    long milestoneId;
     String milestoneName;
-    int projectId;
+    long projectId;
 }

@@ -4,7 +4,7 @@ import lombok.Value;
 
 @Value
 public class TagPutRequest {
-    Integer tagId;
+    long tagId;
     String tagName;
-    int projectId;
+    long projectId;
 }

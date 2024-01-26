@@ -4,10 +4,10 @@ import lombok.Value;
 
 @Value
 public class TaskResponse {
-    Integer taskId;
+    long taskId;
     String taskTitle;
     String taskContent;
-    int projectId;
-    int milestoneId;
-    int accountId;
+    long projectId;
+    long milestoneId;
+    String accountId;
 }

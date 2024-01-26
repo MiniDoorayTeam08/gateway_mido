@@ -1,6 +1,6 @@
-package com.nhnacademy.midoo.gateway.controller.task;
+package com.nhnacademy.midoo.gateway.controller;
 
-import com.nhnacademy.midoo.gateway.domain.TaskPostRequest;
+import com.nhnacademy.midoo.gateway.domain.MilestonePostRequest;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,29 +8,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/tasks/register")
-public class TaskRegisterController {
+@RequestMapping("/milestone/register")
+public class MilestoneRegisterController {
     private final TaskService taskService;
 
-    public TaskRegisterController(TaskService taskService) {
+    public MilestoneRegisterController(TaskService taskService) {
         this.taskService = taskService;
     }
 
     @GetMapping("/{projectId}")
-    public String getTaskRegisterForm(@PathVariable("projectId") int projectId,
-                                      Model model) {
+    public String getMilestoneForm(@PathVariable("projectId") int projectId,
+                                   Model model) {
         model.addAttribute("projectId", projectId);
 
-        return "taskRegister";
+        return "milestoneRegister";
     }
 
     @PostMapping
-    public String postTask(@ModelAttribute TaskPostRequest taskPostRequest) {
-        taskService.postTask(taskPostRequest);
+    public String postMilestone(@ModelAttribute MilestonePostRequest milestonePostRequest) {
+        taskService.postMilestone(milestonePostRequest);
 
         return "redirect:/";
     }

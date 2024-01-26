@@ -4,8 +4,8 @@ import lombok.Value;
 
 @Value
 public class CommentResponse {
-    int commentId;
+    long commentId;
     String commentContent;
-    int taskId;
-    int accountId;
+    long taskId;
+    String accountId;
 }

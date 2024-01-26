@@ -6,5 +6,5 @@ import lombok.Data;
 public class Milestone {
     private Long mileStoneId;
     private String name;
-    private Long project가Id;
+    private Long projectId;
 }
