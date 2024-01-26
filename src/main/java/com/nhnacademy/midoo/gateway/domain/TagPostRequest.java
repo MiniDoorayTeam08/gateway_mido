@@ -5,5 +5,5 @@ import lombok.Value;
 @Value
 public class TagPostRequest {
     String tagName;
-    int projectId;
+    long projectId;
 }

@@ -6,7 +6,7 @@ import lombok.Value;
 public class TaskPostRequest {
     String taskTitle;
     String taskContent;
-    int projectId;
-    int milestoneId;
-    int accountId;
+    long projectId;
+    long milestoneId;
+    long accountId;
 }

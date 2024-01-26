@@ -5,5 +5,5 @@ import lombok.Value;
 @Value
 public class MilestonePostRequest {
     String milestoneName;
-    int projectId;
+    long projectId;
 }

@@ -4,5 +4,5 @@ import lombok.Value;
 
 @Value
 public class AccountIdOnly {
-    int accountId;
+    long accountId;
 }
