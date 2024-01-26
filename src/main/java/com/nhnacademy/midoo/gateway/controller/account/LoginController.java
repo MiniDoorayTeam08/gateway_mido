@@ -37,7 +37,7 @@ public class LoginController {
 
         model.addAttribute("account", response);
 
-        return "redirect:/mypage/" + response.getId();
+        return "redirect:/mypage";
 
     }
 }
