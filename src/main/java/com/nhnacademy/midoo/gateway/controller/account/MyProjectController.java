@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -20,13 +19,11 @@ public class MyProjectController {
         this.projectService = projectService;
     }
 
-    @GetMapping("/{accountId}")
-    public String showMyProjects(@PathVariable String accountId, HttpServletRequest request, Model model) {
-        if (!accountId.equals(request.getSession(true).getAttribute("id").toString())) {
-            throw new RuntimeException(); // 잘못된 요청 에러 던지기
-        }
+    @GetMapping
+    public String showMyProjects(HttpServletRequest request, Model model) {
+        String accountId = request.getSession().toString();
 
-        List<ProjectInfo> projects = projectService.getProjectsByAccountId(accountId); //pagenation?
+        List<ProjectInfo> projects = projectService.getProjectsByAccountId(accountId);
 
         model.addAttribute("projects", projects);
         return "myProject";
