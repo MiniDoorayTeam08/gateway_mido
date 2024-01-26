@@ -5,7 +5,7 @@
     <title>My Page</title>
 </head>
 <body>
-<h1>정보</h1>
+<h1>내 정보</h1>
 <p th:text="'아이디: ' + ${accountInfo.id}"></p>
 <p th:text="'이메일: ' + ${accountInfo.email}"></p>
 <p th:text="'상태: ' + ${accountInfo.accountStatus}"></p>
@@ -14,5 +14,6 @@
     <span th:text="'상태 수정'"/>: <input type="text" name="status"/><br/>
     <input type="submit" th:value="수정"/>
 </form>
+<a th:href="@{/myprojects/{accountId}(accountId=${accountInfo.id})}" th:text="'내 프로젝트'"></a>
 </body>
 </html>

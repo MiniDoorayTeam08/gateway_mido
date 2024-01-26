@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>MyProject</title>
 </head>
 <body>
 <h1>프로젝트</h1>
+<div>
+    <a th:href="@{/project/create}">프로젝트 생성</a>
+</div>
 <div th:each="projectInfo : ${projects}">
     <p>
         <a th:href="@{/project/{projectId}(projectId=${projects.projectId})}"

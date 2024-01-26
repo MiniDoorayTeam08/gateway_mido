@@ -8,9 +8,10 @@
 <h1>Create Project</h1>
 <form th:object="${project}" th:action="@{/project/create}" method="post">
     <!-- Input fields for project details -->
-    <label>이름: <input type="text" th:field="*{name}"/></label><br/>
-    <label>상태: <input type="text" th:field="*{status}"/></label><br/>
-    <label>설명: <textarea th:field="*{description}"></textarea></label><br/>
+    <label><input type="text" th:value="${accountId}" hidden="hidden"/></label><br/>
+    <label>이름: <input type="text" th:field="*{projectName}"/></label><br/>
+    <label>상태: <input type="text" th:field="*{projectStatus}"/></label><br/>
+    <label>설명: <textarea th:field="*{projectExplain}"></textarea></label><br/>
 
     <input type="submit" value="Create Project"/>
 </form>
