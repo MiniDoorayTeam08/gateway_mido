@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+업무명 : <span th:text="${task.taskTitle}"></span>
+<br/>
+업무 내용 : <br/>
+<span th:text="${task.taskContent}"></span>
+<br/>
+댓글 :
+<br/>
+<table border="1">
+    <thead>
+    <th>내용</th>
+    <th>작성자Id</th>
+    <th>수정</th>
+    </thead>
+    <tbody>
+    <tr th:each="comment : ${comments}">
+        <td th:text="${comment.commentContent}"></td>
+        <td th:text="${comment.accountId}"></td>
+        <a th:href="@{/{commentId}/modify(commentId=${task.taskId})}" th:text="수정"></a>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
