@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
-//option+command+v : 리턴타입 자동으로 만들어줌
 @Controller
 @RequestMapping("/mytask")
 public class MyTaskController {

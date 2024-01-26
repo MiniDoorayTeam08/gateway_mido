@@ -1,30 +1,22 @@
 package com.nhnacademy.midoo.gateway.controller;
 
-import com.nhnacademy.midoo.gateway.config.ServerProperties;
+import com.nhnacademy.midoo.gateway.domain.MilestonePostRequest;
 import com.nhnacademy.midoo.gateway.domain.MilestonePutRequest;
-import java.util.List;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
 
 @Controller
 @RequestMapping("/milestones")
 public class MilestoneController {
-    private final ServerProperties serverProperties;
-    private final RestTemplate restTemplate;
+    private final TaskService taskService;
 
-    public MilestoneController(ServerProperties serverProperties, RestTemplate restTemplate) {
-        this.serverProperties = serverProperties;
-        this.restTemplate = restTemplate;
+    public MilestoneController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
     @GetMapping
@@ -33,56 +25,23 @@ public class MilestoneController {
     }
 
     @PostMapping
-    public String postMilestone(@RequestBody MilestonePutRequest milestonePutRequest) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = serverProperties.getTaskPort() + "/milestones/" + "${프로젝트아이디}" + "/register";
-
-        HttpEntity<MilestonePutRequest> requestEntity = new HttpEntity<>(milestonePutRequest, httpHeaders);
-        restTemplate.exchange(
-                url,
-                HttpMethod.POST,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
+    public String postMilestone(@RequestBody MilestonePostRequest milestonePostRequest) {
+        taskService.postMilestone(milestonePostRequest);
 
         return "/";
     }
 
-    @PostMapping("/{milestoneId}")
+    @PostMapping("/{milestoneId}/modify")
     public String putMilestone(@PathVariable("milestoneId") int milestoneId,
                                @RequestBody MilestonePutRequest milestonePutRequest) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = serverProperties.getTaskPort() + "/milestones/" + milestoneId;
-
-        HttpEntity<MilestonePutRequest> requestEntity = new HttpEntity<>(milestonePutRequest, httpHeaders);
-        restTemplate.exchange(
-                url,
-                HttpMethod.PUT,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
+        taskService.putMilestone(milestoneId, milestonePutRequest);
 
         return "/";
     }
 
     @PostMapping("/{milestoneId}")
     public String deleteMilestone(@PathVariable int milestoneId) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = serverProperties.getTaskPort() + "/milestones/" + milestoneId;
-
-        HttpEntity<MilestonePutRequest> requestEntity = new HttpEntity<>(httpHeaders);
-        restTemplate.exchange(
-                url,
-                HttpMethod.DELETE,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
+        taskService.deleteMilestone(milestoneId);
 
 
         return "/";
