@@ -9,16 +9,20 @@ import com.nhnacademy.midoo.gateway.domain.TagPostRequest;
 import com.nhnacademy.midoo.gateway.domain.TagPutRequest;
 import com.nhnacademy.midoo.gateway.domain.TaskPostRequest;
 import com.nhnacademy.midoo.gateway.domain.TaskPutRequest;
+import com.nhnacademy.midoo.gateway.domain.response.CommentResponse;
+import com.nhnacademy.midoo.gateway.domain.response.MilestoneResponse;
+import com.nhnacademy.midoo.gateway.domain.response.TagResponse;
+import com.nhnacademy.midoo.gateway.domain.response.TaskResponse;
 import java.util.List;
 
 public interface TaskService {
-    TaskPutRequest getTaskByTaskId(int taskId);
+    TaskResponse getTaskByTaskId(int taskId);
 
-    List<TagPutRequest> getTagsByTaskId(int taskId);
+    List<TagResponse> getTagsByTaskId(int taskId);
 
-    MilestonePutRequest getMilestoneByTaskId(int taskId);
+    MilestoneResponse getMilestoneByTaskId(int taskId);
 
-    List<CommentPutRequest> getCommentsByTaskId(int taskId);
+    List<CommentResponse> getCommentsByTaskId(int taskId);
 
     void putTask(int taskId, TaskPutRequest taskPutRequest);
 
@@ -26,7 +30,7 @@ public interface TaskService {
 
     void postTask(TaskPostRequest taskPostRequest);
 
-    TagPutRequest getTagByTagId(int tagId);
+    TagResponse getTagByTagId(int tagId);
 
     void postTag(TagPostRequest tagPostRequest);
 
@@ -40,7 +44,7 @@ public interface TaskService {
 
     void deleteMilestone(int milestoneId);
 
-    CommentPutRequest getCommentByCommentId(int commentId);
+    CommentResponse getCommentByCommentId(int commentId);
 
     void postComment(CommentPostRequest commentPostRequest);
 
