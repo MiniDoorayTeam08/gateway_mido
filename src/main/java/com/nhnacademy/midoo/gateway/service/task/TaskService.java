@@ -7,6 +7,7 @@ import com.nhnacademy.midoo.gateway.domain.MilestonePostRequest;
 import com.nhnacademy.midoo.gateway.domain.MilestonePutRequest;
 import com.nhnacademy.midoo.gateway.domain.TagPostRequest;
 import com.nhnacademy.midoo.gateway.domain.TagPutRequest;
+import com.nhnacademy.midoo.gateway.domain.Task;
 import com.nhnacademy.midoo.gateway.domain.TaskPostRequest;
 import com.nhnacademy.midoo.gateway.domain.TaskPutRequest;
 import com.nhnacademy.midoo.gateway.domain.response.CommentResponse;
@@ -51,4 +52,6 @@ public interface TaskService {
     void putComment(CommentPutRequest commentPutRequest);
 
     void deleteComment(CommentIdOnly commentIdOnly);
+
+    List<Task> getTasksByAccountId(int accountId);
 }

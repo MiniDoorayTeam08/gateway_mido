@@ -36,7 +36,7 @@ public class TaskController {
                                     Model model) {
         model.addAttribute("task", taskService.getTaskByTaskId(taskId));
 
-        return "/taskRegister";
+        return "/taskUpdate";
     }
 
     @PutMapping("/{taskId}/modify")
@@ -44,13 +44,13 @@ public class TaskController {
                           @RequestBody TaskPutRequest taskPutRequest) {
         taskService.putTask(taskId, taskPutRequest);
 
-        return "/";
+        return "redirect:/";
     }
 
     @DeleteMapping("{taskId}")
     public String deleteTask(@PathVariable("taskId") int taskId) {
         taskService.deleteTask(taskId);
 
-        return "/";
+        return "redirect:/";
     }
 }

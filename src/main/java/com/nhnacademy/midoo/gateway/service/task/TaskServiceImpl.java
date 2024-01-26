@@ -1,6 +1,7 @@
 package com.nhnacademy.midoo.gateway.service.task;
 
 import com.nhnacademy.midoo.gateway.config.ServerProperties;
+import com.nhnacademy.midoo.gateway.domain.AccountIdOnly;
 import com.nhnacademy.midoo.gateway.domain.CommentIdOnly;
 import com.nhnacademy.midoo.gateway.domain.CommentPostRequest;
 import com.nhnacademy.midoo.gateway.domain.CommentPutRequest;
@@ -8,6 +9,7 @@ import com.nhnacademy.midoo.gateway.domain.MilestonePostRequest;
 import com.nhnacademy.midoo.gateway.domain.MilestonePutRequest;
 import com.nhnacademy.midoo.gateway.domain.TagPostRequest;
 import com.nhnacademy.midoo.gateway.domain.TagPutRequest;
+import com.nhnacademy.midoo.gateway.domain.Task;
 import com.nhnacademy.midoo.gateway.domain.TaskPostRequest;
 import com.nhnacademy.midoo.gateway.domain.TaskPutRequest;
 import com.nhnacademy.midoo.gateway.domain.response.CommentResponse;
@@ -333,42 +335,21 @@ public class TaskServiceImpl implements TaskService {
                 new ParameterizedTypeReference<>() {
                 });
     }
+
+    public List<Task> getTasksByAccountId(int accountId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        String url = serverProperties.getTaskPort() + "/";
+
+        HttpEntity<AccountIdOnly> requestEntity = new HttpEntity<>(new AccountIdOnly(accountId), httpHeaders);
+        ResponseEntity<List<Task>> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                });
+
+        return responseEntity.getBody();
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

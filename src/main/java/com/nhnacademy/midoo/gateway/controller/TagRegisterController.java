@@ -1,6 +1,6 @@
 package com.nhnacademy.midoo.gateway.controller;
 
-import com.nhnacademy.midoo.gateway.domain.TaskPostRequest;
+import com.nhnacademy.midoo.gateway.domain.TagPostRequest;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,25 +11,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/tasks/register")
-public class TaskRegisterController {
+@RequestMapping("/tags/register")
+public class TagRegisterController {
     private final TaskService taskService;
 
-    public TaskRegisterController(TaskService taskService) {
+    public TagRegisterController(TaskService taskService) {
         this.taskService = taskService;
     }
 
     @GetMapping("/{projectId}")
-    public String getTaskRegisterForm(@PathVariable("projectId") int projectId,
-                                      Model model) {
+    public String getTagRegisterForm(@PathVariable("projectId") int projectId,
+                                     Model model) {
         model.addAttribute("projectId", projectId);
 
-        return "taskRegister";
+        return "tagRegister";
     }
 
     @PostMapping
-    public String postTask(@RequestBody TaskPostRequest taskPostRequest) {
-        taskService.postTask(taskPostRequest);
+    public String postTag(@RequestBody TagPostRequest tagPostRequest) {
+        taskService.postTag(tagPostRequest);
 
         return "redirect:/";
     }
