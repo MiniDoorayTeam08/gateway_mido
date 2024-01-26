@@ -1,4 +1,4 @@
-package com.nhnacademy.midoo.gateway.controller;
+package com.nhnacademy.midoo.gateway.controller.account;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -9,6 +9,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @Setter
 @ToString
+
 public class AccountDto {
 
     private String id;
@@ -17,5 +18,9 @@ public class AccountDto {
     private String name;
     private String status;
 
-
+    public AccountDto(String id, String email, String pwd) {
+        this.id = id;
+        this.email = email;
+        this.pwd = pwd;
+    }
 }

@@ -1,6 +1,7 @@
 package com.nhnacademy.midoo.gateway.controller.task;
 
 import com.nhnacademy.midoo.gateway.domain.CommentIdOnly;
+
 import com.nhnacademy.midoo.gateway.domain.CommentPutRequest;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,11 @@ public class CommentController {
 
     public CommentController(TaskService taskService) {
         this.taskService = taskService;
+    }
+
+    @GetMapping("/register")
+    public String getCommentRegisterForm() {
+        return "commentRegister";
     }
 
     @GetMapping("{commentId}/modify")
@@ -40,5 +46,6 @@ public class CommentController {
         taskService.deleteComment(commentIdOnly);
 
         return "redirect:/";
+
     }
 }

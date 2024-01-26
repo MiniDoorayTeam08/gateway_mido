@@ -1,5 +1,6 @@
 package com.nhnacademy.midoo.gateway.util;
 
+import java.util.List;
 import java.util.Map;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +23,7 @@ public class RestTemplateUtil {
         HttpHeaders headers = new HttpHeaders();
         headers.set("clientId", clientId);
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         HttpEntity<String> body2 = new HttpEntity<>(body, headers);
 
         //body.getHeaders().add("clientId", clientId.toString());//clientid로 입력된다 - http haeder 는 대소문자를 구별하지 않으므로 자동으로 소문자로 맵핑한다

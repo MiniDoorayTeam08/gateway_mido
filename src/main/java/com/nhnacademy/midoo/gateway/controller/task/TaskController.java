@@ -3,6 +3,7 @@ package com.nhnacademy.midoo.gateway.controller.task;
 import com.nhnacademy.midoo.gateway.domain.TaskPutRequest;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -28,6 +30,7 @@ public class TaskController {
         String accountId = request.getSession().getAttribute("${로그인에서 사용한 이름}").toString();
 
         model.addAttribute("accountId", accountId);
+
         model.addAttribute("task", taskService.getTaskByTaskId(taskId));
         model.addAttribute("tags", taskService.getTagsByTaskId(taskId));
         model.addAttribute("milestone", taskService.getMilestoneByTaskId(taskId));

@@ -2,6 +2,7 @@ package com.nhnacademy.midoo.gateway.controller.task;
 
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ public class MyTaskController {
 
     public MyTaskController(TaskService taskService) {
         this.taskService = taskService;
+
     }
 
     @GetMapping
