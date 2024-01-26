@@ -8,5 +8,5 @@ public class TaskPostRequest {
     String taskContent;
     long projectId;
     long milestoneId;
-    long accountId;
+    String accountId;
 }

@@ -9,5 +9,5 @@ public class TaskResponse {
     String taskContent;
     long projectId;
     long milestoneId;
-    long accountId;
+    String accountId;
 }

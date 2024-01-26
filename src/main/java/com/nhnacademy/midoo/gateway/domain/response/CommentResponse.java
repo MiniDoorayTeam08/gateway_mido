@@ -7,5 +7,5 @@ public class CommentResponse {
     long commentId;
     String commentContent;
     long taskId;
-    long accountId;
+    String accountId;
 }
