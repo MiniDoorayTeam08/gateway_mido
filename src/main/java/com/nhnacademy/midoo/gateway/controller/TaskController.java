@@ -2,6 +2,7 @@ package com.nhnacademy.midoo.gateway.controller;
 
 import com.nhnacademy.midoo.gateway.domain.TaskPutRequest;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +23,11 @@ public class TaskController {
 
     @GetMapping("/{taskId}")
     public String getTask(@PathVariable("taskId") int taskId,
+                          HttpServletRequest request,
                           Model model) {
+        int accountId = Integer.parseInt(request.getSession().getAttribute("${로그인에서 사용한 이름}").toString());
+
+        model.addAttribute("accountId", accountId);
         model.addAttribute("task", taskService.getTaskByTaskId(taskId));
         model.addAttribute("tags", taskService.getTagsByTaskId(taskId));
         model.addAttribute("milestone", taskService.getMilestoneByTaskId(taskId));
