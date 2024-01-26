@@ -1,6 +1,8 @@
 package com.nhnacademy.midoo.gateway.controller;
 
 import com.nhnacademy.midoo.gateway.domain.task.entity.ProjectDetail;
+import com.nhnacademy.midoo.gateway.service.ProjectService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/project")
 public class ProjectController {
-    //    private final ProjectService projectService;
-//
-//    @Autowired
-//    public ProjectController(ProjectService projectService) {
-//        this.projectService = projectService;
-//    }
+    private final ProjectService projectService;
+
+    @Autowired
+    public ProjectController(ProjectService projectService) {
+        this.projectService = projectService;
+    }
+
     @GetMapping("/{projectId}")
     public String showProjectDetail(@PathVariable Long projectId, Model model) {
 //        ProjectDetail projectDetail = projectService.getProjectDetail(projectId);
@@ -41,8 +44,8 @@ public class ProjectController {
 
     @GetMapping("/{projectId}/edit")
     public String showEditProjectForm(@PathVariable Long projectId, Model model) {
-//        ProjectDetail projectDetail = projectService.getProjectDetail(projectId);
-//        model.addAttribute("project", projectDetail);
+        ProjectDetail projectDetail = projectService.getProjectDetail(projectId);
+        model.addAttribute("project", projectDetail);
         return "editProject";
     }
 

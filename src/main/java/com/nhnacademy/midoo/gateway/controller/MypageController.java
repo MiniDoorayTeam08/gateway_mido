@@ -1,8 +1,7 @@
 package com.nhnacademy.midoo.gateway.controller;
 
 
-import com.nhnacademy.midoo.gateway.domain.AccountInfo;
-import com.nhnacademy.midoo.gateway.model.MypageModifyRequest;
+import com.nhnacademy.midoo.gateway.domain.account.AccountUpdateDto;
 import com.nhnacademy.midoo.gateway.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,14 +24,15 @@ public class MypageController {
 
     @GetMapping("/{accountId}")
     public String getMypage(@PathVariable String accountId, Model model) {
-        AccountInfo accountInfo = accountService.getAccountInfoById(accountId);
-        model.addAttribute("accountInfo", accountInfo);
+////        AccountInfo accountInfo = accountService.getAccountInfoById(accountId);
+//        model.addAttribute("accountInfo", accountInfo);
         return "mypage";
     }
 
     @PostMapping
-    public String userModify(@RequestBody MypageModifyRequest request) {
-        return accountService.modify(request);
+    public String userModify(@RequestBody AccountUpdateDto accountUpdateDto) {
+//        accountService.putAccount(new AccountDto(),accountUpdateDto.getId());
+        return "mypage";
     }
 
 }

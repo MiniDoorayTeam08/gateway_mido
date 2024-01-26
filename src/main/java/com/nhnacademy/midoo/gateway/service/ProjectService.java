@@ -1,12 +1,11 @@
 package com.nhnacademy.midoo.gateway.service;
 
 import com.nhnacademy.midoo.gateway.domain.task.entity.ProjectDetail;
+import org.springframework.stereotype.Service;
 
-
-public interface ProjectService {
-    ProjectDetail getProjectDetail(Long projectId);
- 
-    void createProject(ProjectDetail projectDetail);
-
-    void editProject(Long projectId, ProjectDetail updatedProjectDetail);
+@Service
+public class ProjectService {
+    public ProjectDetail getProjectDetail(Long projectId) {
+        return new ProjectDetail();
+    }
 }
