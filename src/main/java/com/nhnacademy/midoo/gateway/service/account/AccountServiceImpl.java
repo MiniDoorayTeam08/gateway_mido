@@ -1,7 +1,6 @@
 package com.nhnacademy.midoo.gateway.service.account;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.midoo.gateway.config.account.AccountApiServerProperties;
 import com.nhnacademy.midoo.gateway.domain.account.request.AccountCreateRequest;
 import com.nhnacademy.midoo.gateway.domain.account.request.AccountGetRequest;
@@ -29,17 +28,7 @@ public class AccountServiceImpl implements AccountService {
     final RestTemplate template;
     final AccountApiServerProperties accountApiServerProperties;
     String accountUrl;
-
     String accountPort;
-
-
-    String accountApiFullUrl;
-    String taskApiFullUrl;
-    @Autowired
-    ObjectMapper mapper;
-
-    @Autowired
-    ObjectMapper objectMapper;
 
     @Autowired
     public AccountServiceImpl(RestTemplate template, AccountApiServerProperties accountApiServerProperties) {
@@ -47,10 +36,6 @@ public class AccountServiceImpl implements AccountService {
         this.accountApiServerProperties = accountApiServerProperties;
 
         accountUrl = accountApiServerProperties.getUrl();
-
-        accountPort = accountApiServerProperties.getPort();
-
-        accountApiFullUrl = accountApiServerProperties.getFullUrl();
     }
 
     @Override
@@ -76,9 +61,10 @@ public class AccountServiceImpl implements AccountService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = accountPort + "/accounts/" + accountId;
+        String url = accountUrl + "/accounts/" + accountId;
+        log.error("url : {}", url);
 
-        HttpEntity<AccountGetRequest> accountRequestEntity = new HttpEntity<>(httpHeaders);
+        HttpEntity<Void> accountRequestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<AccountResponse> responseEntity = template.exchange(
                 url,
                 HttpMethod.GET,
@@ -130,12 +116,14 @@ public class AccountServiceImpl implements AccountService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = accountPort + "/accounts/login";
+        String url = accountUrl + "/accounts/login";
+        log.error("url : {}", url);
 
-        HttpEntity<AccountGetRequest> accountRequestEntity = new HttpEntity<>(httpHeaders);
+        HttpEntity<LoginRequest> accountRequestEntity = new HttpEntity<>(request, httpHeaders);
+
         ResponseEntity<AccountResponse> responseEntity = template.exchange(
                 url,
-                HttpMethod.GET,
+                HttpMethod.POST,
                 accountRequestEntity,
                 new ParameterizedTypeReference<>() {
                 });
@@ -152,7 +140,7 @@ public class AccountServiceImpl implements AccountService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = accountPort + "/accounts/register";
+        String url = accountUrl + "/accounts/register";
 
         HttpEntity<AccountCreateRequest> requestEntity = new HttpEntity<>(request, httpHeaders);
         ResponseEntity<String> responseEntity = template.exchange(

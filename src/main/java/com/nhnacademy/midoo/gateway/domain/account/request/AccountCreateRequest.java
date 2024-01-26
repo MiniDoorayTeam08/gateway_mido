@@ -5,9 +5,8 @@ import lombok.Value;
 
 @Value
 public class AccountCreateRequest {
-    private String id;
-    private String pwd;
-    private String email;
-    private String accountStatus;
-
+    String id;
+    String password;
+    String email;
+    String accountStatus;
 }

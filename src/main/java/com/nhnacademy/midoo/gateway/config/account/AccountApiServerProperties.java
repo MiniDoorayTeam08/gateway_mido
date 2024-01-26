@@ -9,7 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 public class AccountApiServerProperties {
     String url;
-    String port;
     String getMemberDetail;
     String postMembers;
     String getMembers;
@@ -19,8 +18,4 @@ public class AccountApiServerProperties {
     String getMemberLogin;
     String postMemberUpdate;
     String postMemberDelete;
-
-    public String getFullUrl() {
-        return getUrl() + ":" + getPort();
-    }
 }

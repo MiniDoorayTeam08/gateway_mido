@@ -5,7 +5,7 @@ import lombok.Value;
 @Value
 public class AccountResponse {
     String id;
-    String pwd;
+    String password;
     String email;
     String accountStatus;
 
