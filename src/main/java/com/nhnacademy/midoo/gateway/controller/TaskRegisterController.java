@@ -19,7 +19,7 @@ public class TaskRegisterController {
 
     @GetMapping
     public String getTaskRegisterForm() {
-        return "taskRegisterForm";
+        return "taskRegister";
     }
 
     @PostMapping
