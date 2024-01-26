@@ -14,6 +14,6 @@
     <span th:text="'상태 수정'"/>: <input type="text" name="status"/><br/>
     <input type="submit" th:value="수정"/>
 </form>
-<a th:href="@{/myprojects/{accountId}(accountId=${accountInfo.id})}" th:text="'내 프로젝트'"></a>
+<a th:href="@{/myprojects}" th:text="'내 프로젝트'"></a>
 </body>
 </html>
