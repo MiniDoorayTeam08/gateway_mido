@@ -1,4 +1,4 @@
-package com.nhnacademy.midoo.gateway.controller;
+package com.nhnacademy.midoo.gateway.controller.task;
 
 import com.nhnacademy.midoo.gateway.domain.TagPostRequest;
 import com.nhnacademy.midoo.gateway.domain.TagPutRequest;

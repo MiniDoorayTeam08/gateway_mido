@@ -1,4 +1,4 @@
-package com.nhnacademy.midoo.gateway.controller;
+package com.nhnacademy.midoo.gateway.controller.task;
 
 import com.nhnacademy.midoo.gateway.domain.TaskPutRequest;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
