@@ -24,35 +24,33 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @Slf4j
 public class AccountServiceImpl implements AccountService {
-
-    final RestTemplate template;
-    final AccountApiServerProperties accountApiServerProperties;
-    String accountUrl;
-    String accountPort;
+    private final RestTemplate template;
+    private final String accountUrl;
 
     @Autowired
     public AccountServiceImpl(RestTemplate template, AccountApiServerProperties accountApiServerProperties) {
         this.template = template;
-        this.accountApiServerProperties = accountApiServerProperties;
-
         accountUrl = accountApiServerProperties.getUrl();
     }
 
     @Override
-    public void putAccount(String accountId, AccountStatusModifyRequest request) {
+    public void putAccount(AccountStatusModifyRequest request) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = accountPort + "/accounts/register" + accountId;
+        String url = accountUrl + "/accounts/status";
 
         HttpEntity<AccountStatusModifyRequest> requestEntity = new HttpEntity<>(request, httpHeaders);
-        template.exchange(
+        ResponseEntity<String> responseEntity = template.exchange(
                 url,
                 HttpMethod.PUT,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
                 });
 
+        if (responseEntity.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException(); // status 수정 예외 던지기.
+        }
     }
 
 
@@ -62,7 +60,6 @@ public class AccountServiceImpl implements AccountService {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         String url = accountUrl + "/accounts/" + accountId;
-        log.error("url : {}", url);
 
         HttpEntity<Void> accountRequestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<AccountResponse> responseEntity = template.exchange(
@@ -80,7 +77,7 @@ public class AccountServiceImpl implements AccountService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = accountPort + "/accounts";
+        String url = accountUrl + "/accounts";
 
         HttpEntity<Void> accountsRequestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<List<AccountsResponse>> responseEntity = template.exchange(
@@ -98,7 +95,7 @@ public class AccountServiceImpl implements AccountService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = accountPort + "/accounts/" + accountId;
+        String url = accountUrl + "/accounts/" + accountId;
 
         HttpEntity<AccountGetRequest> accountRequestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<AccountResponse> responseEntity = template.exchange(
@@ -117,7 +114,6 @@ public class AccountServiceImpl implements AccountService {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         String url = accountUrl + "/accounts/login";
-        log.error("url : {}", url);
 
         HttpEntity<LoginRequest> accountRequestEntity = new HttpEntity<>(request, httpHeaders);
 

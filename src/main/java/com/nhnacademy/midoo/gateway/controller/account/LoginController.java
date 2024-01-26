@@ -3,14 +3,16 @@ package com.nhnacademy.midoo.gateway.controller.account;
 import com.nhnacademy.midoo.gateway.domain.account.request.LoginRequest;
 import com.nhnacademy.midoo.gateway.domain.account.response.AccountResponse;
 import com.nhnacademy.midoo.gateway.service.account.AccountServiceImpl;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/login")
@@ -26,11 +28,16 @@ public class LoginController {
     }
 
     @PostMapping
-    public String postLogin(@RequestParam("id") String id,
-                            @RequestParam("pwd") String paaswored, Model model) {
-        AccountResponse response = accountServiceImpl.matchIdPwd(new LoginRequest(id, paaswored));
+    public String postLogin(@ModelAttribute LoginRequest loginRequest,
+                            HttpServletRequest request,
+                            Model model) {
+        AccountResponse response = accountServiceImpl.matchIdPwd(loginRequest);
+        HttpSession session = request.getSession(true);
+        session.setAttribute("id", response.getId());
+
         model.addAttribute("account", response);
-        return "mypage/" + response.getId();
+
+        return "redirect:/mypage/" + response.getId();
 
     }
 }

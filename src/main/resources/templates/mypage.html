@@ -10,8 +10,9 @@
 <p th:text="'이메일: ' + ${accountInfo.email}"></p>
 <p th:text="'상태: ' + ${accountInfo.accountStatus}"></p>
 <form method="post" action="/mypage">
-    <span th:text="상태"/>: <input type="text" name="status"/><br/>
-    <input type="submit"/>
+    <input type="text" th:name="id" th:value="${accountInfo.id}" hidden="hidden">
+    <span th:text="'상태 수정'"/>: <input type="text" name="status"/><br/>
+    <input type="submit" th:value="수정"/>
 </form>
 </body>
 </html>

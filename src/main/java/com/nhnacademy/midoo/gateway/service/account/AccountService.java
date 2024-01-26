@@ -19,7 +19,7 @@ public interface AccountService {
 
     String createAccount(AccountCreateRequest request);
 
-    void putAccount(String accountId, AccountStatusModifyRequest request);
+    void putAccount(AccountStatusModifyRequest request);
 
 
 }

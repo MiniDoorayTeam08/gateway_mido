@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class ProjectInfo {
     private Long projectId;
-    private Long accountId;
-    private String name;
-    private String status;
-    private String description;
+    private String accountId;
+    private String projectName;
+    private String projectStatus;
+    private String projectExplain;
 }

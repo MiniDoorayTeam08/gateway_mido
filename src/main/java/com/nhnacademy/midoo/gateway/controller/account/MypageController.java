@@ -3,6 +3,7 @@ package com.nhnacademy.midoo.gateway.controller.account;
 
 import com.nhnacademy.midoo.gateway.domain.account.request.AccountStatusModifyRequest;
 import com.nhnacademy.midoo.gateway.service.account.AccountServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Slf4j
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
@@ -30,7 +32,9 @@ public class MypageController {
 
     @PostMapping
     public String userModify(@ModelAttribute AccountStatusModifyRequest request) {
-        accountServiceImpl.putAccount(request.getId(), request);
+        log.info("id : {}, status : {}", request.getId(), request.getStatus());
+
+        accountServiceImpl.putAccount(request);
         return "redirect:/mypage/" + request.getId();
     }
 
