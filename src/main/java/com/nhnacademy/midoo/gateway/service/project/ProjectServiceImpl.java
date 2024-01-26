@@ -63,6 +63,19 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectDetail getProjectDetail(Long projectId) {
-        return null;
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        String url = taskUrl + "/projects/detail/" + projectId;
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(httpHeaders);
+        ResponseEntity<ProjectDetail> responseEntity = template.exchange(
+                url,
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                });
+
+        return responseEntity.getBody();
     }
 }

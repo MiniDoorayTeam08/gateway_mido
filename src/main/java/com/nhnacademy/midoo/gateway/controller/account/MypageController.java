@@ -34,7 +34,6 @@ public class MypageController {
     @PostMapping
     public String userModify(@ModelAttribute AccountStatusModifyRequest request) {
         log.info("id : {}, status : {}", request.getId(), request.getStatus());
-
         accountServiceImpl.putAccount(request);
         return "redirect:/mypage";
     }
