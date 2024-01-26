@@ -5,9 +5,9 @@ import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -28,7 +28,7 @@ public class TaskRegisterController {
     }
 
     @PostMapping
-    public String postTask(@RequestBody TaskPostRequest taskPostRequest) {
+    public String postTask(@ModelAttribute TaskPostRequest taskPostRequest) {
         taskService.postTask(taskPostRequest);
 
         return "redirect:/";
