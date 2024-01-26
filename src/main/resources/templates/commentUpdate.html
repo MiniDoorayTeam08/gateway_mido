@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="/comments/modify">
+    내용:
+    <br/>
+    <textarea th:value="${comment.commentContent}" name="commentContent" rows="10" cols="50"></textarea>
+    <input th:value="${comment.commentId}" name="commentId" hidden="hidden">
+    <input th:value="${comment.taskId}" name="taskId" hidden="hidden">
+    <input th:value="${comment.accountId}" name="accountId" hidden="hidden">
+</form>
+</body>
+</html>

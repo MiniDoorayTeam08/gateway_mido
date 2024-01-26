@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="/tasks/register">
+    <span>업무명: </span>
+    <br/>
+    <input type="text" name="taskTitle" th:value="${task.taskTitle}"/>
+    <br/>
+    <br/>
+    <span>업무내용: </span>
+    <br/>
+    <textarea name="taskContent" th:value="${task.taskContent}" rows="10" cols="100"></textarea><br/>
+    <input type="text" name="projectId" th:value="${task.projectId}" hidden="hidden">
+    <input type="submit" th:value="저장">
+</form>
+</body>
+</html>
