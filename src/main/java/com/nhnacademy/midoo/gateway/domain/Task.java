@@ -7,7 +7,7 @@ public class Task {
     private Long taskId;
     private String context;
     private Long projectId;
-    private Long mileStonrId;
+    private Long milestoneId;
     private String accountId;
-
+    private String name;
 }

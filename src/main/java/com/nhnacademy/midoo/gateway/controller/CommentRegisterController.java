@@ -24,7 +24,7 @@ public class CommentRegisterController {
     public String getCommentRegisterForm(@PathVariable("taskId") int taskId,
                                          HttpServletRequest request,
                                          Model model) {
-        int accountId = Integer.parseInt(request.getSession().getAttribute("${로그인할 때 세션에 넣은 값}").toString());
+        String accountId = request.getSession().getAttribute("${로그인할 때 세션에 넣은 값}").toString();
 
         model.addAttribute("taskId", taskId);
         model.addAttribute("accountId", accountId);

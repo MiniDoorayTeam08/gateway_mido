@@ -19,8 +19,8 @@ public class MyTaskController {
     @GetMapping
     public String getMyTaskPage(HttpServletRequest request,
                                 Model model) {
-        int accountId = Integer.parseInt(request.getSession().getAttribute("${로그인에서 세션에 넣은 값}").toString());
-        
+        String accountId = request.getSession().getAttribute("${로그인에서 세션에 넣은 값}").toString();
+
         model.addAttribute("tasks", taskService.getTasksByAccountId(accountId));
 
         return "/myTaskPage";

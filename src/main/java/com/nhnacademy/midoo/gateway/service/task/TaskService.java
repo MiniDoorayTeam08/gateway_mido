@@ -53,5 +53,5 @@ public interface TaskService {
 
     void deleteComment(CommentIdOnly commentIdOnly);
 
-    List<Task> getTasksByAccountId(int accountId);
+    List<Task> getTasksByAccountId(String accountId);
 }

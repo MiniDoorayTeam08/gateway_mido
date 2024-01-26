@@ -7,7 +7,11 @@
 <body>
 <h1>프로젝트</h1>
 <div th:each="projectInfo : ${projects}">
-    <p th:text="'이름: ' + ${projectInfo.name}"></p>
+    <p>
+        <a th:href="@{/project/{projectId}(projectId=${projects.projectId})}"
+           th:text="'이름: ' + ${projectInfo.name}">
+        </a>
+    </p>
     <p th:text="'상태: ' + ${projectInfo.status}"></p>
     <p th:text="'부가설명: ' + ${projectInfo.description}"></p>
 </div>

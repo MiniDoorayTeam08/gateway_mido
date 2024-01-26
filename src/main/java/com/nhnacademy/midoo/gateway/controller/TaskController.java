@@ -25,7 +25,7 @@ public class TaskController {
     public String getTask(@PathVariable("taskId") int taskId,
                           HttpServletRequest request,
                           Model model) {
-        int accountId = Integer.parseInt(request.getSession().getAttribute("${로그인에서 사용한 이름}").toString());
+        String accountId = request.getSession().getAttribute("${로그인에서 사용한 이름}").toString();
 
         model.addAttribute("accountId", accountId);
         model.addAttribute("task", taskService.getTaskByTaskId(taskId));

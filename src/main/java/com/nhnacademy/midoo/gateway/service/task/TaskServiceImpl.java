@@ -336,7 +336,7 @@ public class TaskServiceImpl implements TaskService {
                 });
     }
 
-    public List<Task> getTasksByAccountId(int accountId) {
+    public List<Task> getTasksByAccountId(String accountId) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
