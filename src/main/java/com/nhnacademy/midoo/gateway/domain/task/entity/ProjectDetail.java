@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 public class ProjectDetail {
+    private Long projectId;
     private String projectName;
     private String projectStatus;
     private String projectExplain;
