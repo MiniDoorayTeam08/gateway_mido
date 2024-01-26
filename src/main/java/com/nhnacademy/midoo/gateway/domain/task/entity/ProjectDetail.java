@@ -8,9 +8,9 @@ import lombok.Data;
 
 @Data
 public class ProjectDetail {
-    private String name;
-    private String status;
-    private String description;
+    private String projectName;
+    private String projectStatus;
+    private String projectExplain;
     private List<Task> tasks;
     private List<Milestone> milestones;
     private List<Tag> tags;
