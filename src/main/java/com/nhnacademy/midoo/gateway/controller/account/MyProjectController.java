@@ -21,7 +21,7 @@ public class MyProjectController {
 
     @GetMapping
     public String showMyProjects(HttpServletRequest request, Model model) {
-        String accountId = request.getSession().toString();
+        String accountId = request.getSession().getAttribute("id").toString();
 
         List<ProjectInfo> projects = projectService.getProjectsByAccountId(accountId);
 

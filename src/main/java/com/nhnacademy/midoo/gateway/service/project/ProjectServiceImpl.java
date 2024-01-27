@@ -2,6 +2,7 @@ package com.nhnacademy.midoo.gateway.service.project;
 
 import com.nhnacademy.midoo.gateway.config.task.TaskApiServerProperties;
 import com.nhnacademy.midoo.gateway.domain.ProjectPostRequest;
+import com.nhnacademy.midoo.gateway.domain.response.ProjectResponse;
 import com.nhnacademy.midoo.gateway.domain.task.entity.ProjectDetail;
 import com.nhnacademy.midoo.gateway.domain.task.entity.ProjectInfo;
 import java.util.List;
@@ -25,11 +26,11 @@ public class ProjectServiceImpl implements ProjectService {
         taskUrl = taskApiServerProperties.getUrl();
     }
 
-    public List<ProjectInfo> getProjectsByAccountId(String projectId) {
+    public List<ProjectInfo> getProjectsByAccountId(String accountId) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = taskUrl + "/projects/myprojects/" + projectId;
+        String url = taskUrl + "/projects/myprojects/" + accountId;
 
         HttpEntity<Void> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<List<ProjectInfo>> responseEntity = template.exchange(
@@ -62,14 +63,14 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public ProjectDetail getProjectDetail(Long projectId) {
+    public ProjectResponse getProjectDetail(Long projectId) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         String url = taskUrl + "/projects/detail/" + projectId;
 
         HttpEntity<Void> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<ProjectDetail> responseEntity = template.exchange(
+        ResponseEntity<ProjectResponse> responseEntity = template.exchange(
                 url,
                 HttpMethod.GET,
                 requestEntity,

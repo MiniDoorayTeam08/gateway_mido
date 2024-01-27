@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/milestone/register")
+@RequestMapping("/milestones/register")
 public class MilestoneRegisterController {
     private final TaskService taskService;
 
@@ -27,9 +27,10 @@ public class MilestoneRegisterController {
         return "milestoneRegister";
     }
 
-    @PostMapping
-    public String postMilestone(@ModelAttribute MilestonePostRequest milestonePostRequest) {
-        taskService.postMilestone(milestonePostRequest);
+    @PostMapping("/{projectId}")
+    public String postMilestone(@PathVariable("projectId") long projectId,
+                                @ModelAttribute MilestonePostRequest milestonePostRequest) {
+        taskService.postMilestone(projectId, milestonePostRequest);
 
         return "redirect:/";
     }

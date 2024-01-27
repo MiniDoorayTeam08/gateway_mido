@@ -9,14 +9,27 @@
 <div>
     <a th:href="@{/project/create}">프로젝트 생성</a>
 </div>
-<div th:each="projectInfo : ${projects}">
-    <p>
-        <a th:href="@{/project/{projectId}(projectId=${projects.projectId})}"
-           th:text="'이름: ' + ${projectInfo.name}">
-        </a>
-    </p>
-    <p th:text="'상태: ' + ${projectInfo.status}"></p>
-    <p th:text="'부가설명: ' + ${projectInfo.description}"></p>
+<div>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>프로젝트명</th>
+            <th>상태</th>
+            <th>부가설명</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="project : ${projects}">
+            <td>
+                <a th:href="@{/project/{projectId}(projectId=${project.projectId})}"
+                   th:text="'프로젝트명: ' + ${project.projectName}">
+                </a>
+            </td>
+            <td th:text="'상태: ' + ${project.projectStatus}"></td>
+            <td th:text="'부가설명: ' + ${project.projectExplain}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

@@ -2,8 +2,13 @@ package com.nhnacademy.midoo.gateway.controller.task;
 
 import com.nhnacademy.midoo.gateway.domain.ProjectPostRequest;
 import com.nhnacademy.midoo.gateway.domain.account.AccountIdNameOnly;
+import com.nhnacademy.midoo.gateway.domain.response.MilestoneResponse;
+import com.nhnacademy.midoo.gateway.domain.response.ProjectResponse;
+import com.nhnacademy.midoo.gateway.domain.response.TagResponse;
+import com.nhnacademy.midoo.gateway.domain.response.TaskResponse;
 import com.nhnacademy.midoo.gateway.domain.task.entity.ProjectDetail;
 import com.nhnacademy.midoo.gateway.service.project.ProjectService;
+import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -20,16 +25,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/project")
 public class ProjectController {
     private final ProjectService projectService;
+    private final TaskService taskService;
 
-    public ProjectController(ProjectService projectService) {
+    public ProjectController(ProjectService projectService, TaskService taskService) {
         this.projectService = projectService;
+        this.taskService = taskService;
     }
 
     @GetMapping("/{projectId}")
     public String showProjectDetail(@PathVariable Long projectId, Model model) {
-        ProjectDetail projectDetail = projectService.getProjectDetail(projectId);
+        ProjectResponse projectResponse = projectService.getProjectDetail(projectId);
+        List<TaskResponse> tasks = taskService.getTaskByProjectId(projectId);
+        List<MilestoneResponse> milestones = taskService.getMilestoneByProjectId(projectId);
+        List<TagResponse> tags = taskService.getTagByProjectId(projectId);
 
-        model.addAttribute("projectDetail", projectDetail);
+        model.addAttribute("project", projectResponse);
+        model.addAttribute("tasks", tasks);
+        model.addAttribute("milestones", milestones);
+        model.addAttribute("tags", tags);
+
         return "projectDetail";
     }
 
