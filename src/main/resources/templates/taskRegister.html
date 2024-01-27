@@ -6,6 +6,7 @@
 </head>
 <body>
 <form method="post" action="/tasks/register">
+    <input type="text" th:value="${accountId}" name="accountId" hidden="hidden">
     <span>업무명: </span>
     <br/>
     <input type="text" name="taskTitle"/>
