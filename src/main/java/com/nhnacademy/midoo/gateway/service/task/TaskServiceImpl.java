@@ -148,9 +148,9 @@ public class TaskServiceImpl implements TaskService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = taskApiServerProperties.getUrl() + "/milestones/" + milestoneId;
+        String url = taskApiServerProperties.getUrl() + "/milestones/" + milestoneId + "/milestoneId";
 
-        HttpEntity<MilestonePutRequest> milestoneRequestEntity = new HttpEntity<>(httpHeaders);
+        HttpEntity<Void> milestoneRequestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<MilestoneResponse> responseEntity = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
@@ -234,9 +234,9 @@ public class TaskServiceImpl implements TaskService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = taskApiServerProperties.getUrl() + "/tags/" + tagId;
+        String url = taskApiServerProperties.getUrl() + "/tags/" + tagId + "/tagId";
 
-        HttpEntity<TagPutRequest> requestEntity = new HttpEntity<>(httpHeaders);
+        HttpEntity<Void> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<TagResponse> responseEntity = restTemplate.exchange(
                 url,
                 HttpMethod.GET,

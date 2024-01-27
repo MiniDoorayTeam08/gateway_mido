@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" th:action="@{/milestones/{projectId}/modify(projectId=${projectId})}">
-    <span th:text="단계명" th:value="${milestone.milestoneName}"></span>: <input type="text" name="milestoneName"/><br/>
+<form method="post" th:action="@{/milestones/{milestoneId}/modify(milestoneId=${milestone.milestoneId})}">
+    <span th:text="단계명"></span>: <input type="text" name="milestoneName" th:value="${milestone.milestoneName}"/><br/>
     <input type="submit">
 </form>
 </body>

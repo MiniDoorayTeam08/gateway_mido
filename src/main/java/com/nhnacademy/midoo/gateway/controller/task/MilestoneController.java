@@ -32,7 +32,7 @@ public class MilestoneController {
                                @ModelAttribute MilestonePutRequest milestonePutRequest) {
         taskService.putMilestone(milestoneId, milestonePutRequest);
 
-        return "redirect:/";
+        return "redirect:/myprojects";
 
     }
 

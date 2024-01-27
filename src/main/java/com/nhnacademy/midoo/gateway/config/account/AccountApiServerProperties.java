@@ -9,13 +9,4 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 public class AccountApiServerProperties {
     String url;
-    String getMemberDetail;
-    String postMembers;
-    String getMembers;
-    String getMemberById;
-    String getMemberPassword;
-    String getMemberEmail;
-    String getMemberLogin;
-    String postMemberUpdate;
-    String postMemberDelete;
 }

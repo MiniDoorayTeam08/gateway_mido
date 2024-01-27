@@ -6,5 +6,4 @@ import lombok.Value;
 public class MilestoneResponse {
     long milestoneId;
     String milestoneName;
-    long projectId;
 }

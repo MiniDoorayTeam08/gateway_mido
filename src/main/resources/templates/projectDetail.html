@@ -16,16 +16,20 @@
 <span>
     <a th:href="@{/milestones/register/{projectId}(projectId=${project.projectId})}">마일스톤 추가</a>
 </span>
+
+<span>
+    <a th:href="@{/tags/register/{projectId}(projectId=${project.projectId})}">태그 추가</a>
+</span>
+
+<span>
+    <a th:href="@{/tags/register/{projectId}(projectId=${project.projectId})}">프로젝트 멤버 관리</a>
+</span>
 <!--<div>-->
 <!--    <form method="GET" action="/milestones/register">-->
 <!--        <input type="text" th:value="@{projectId}" name="projectId">-->
 <!--        <input type="submit" th:value="마일스톤 추가">-->
 <!--    </form>-->
 <!--</div>-->
-
-<span>
-    <a th:href="@{/tags/register/{projectId}(projectId=${project.projectId})}">태그 추가</a>
-</span>
 
 <!--<h2>Tasks</h2>-->
 <!--<ul>-->
@@ -63,7 +67,9 @@
 
 <h2>Tags</h2>
 <ul>
-    <li th:each="tag : ${tags}" th:text="${tag.tagName}"></li>
+    <li th:each="tag : ${tags}">
+        <a th:href="@{/tags/{tagId}/modify(tagId=${tag.tagId})}" th:text="${tag.tagName}"></a>
+    </li>
 </ul>
 </body>
 </html>
