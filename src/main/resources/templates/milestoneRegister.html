@@ -5,9 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="/milestones/register">
-    <span th:text="단계명"></span>: <input type="text" name="name"/><br/>
-    <input type="text" name="projectId" th:value="${projectId}" hidden="hidden">
+<form method="post" th:action="@{/milestones/register/{projectId}(projectId=${projectId})}">
+    <span th:text="단계명"></span>: <input type="text" name="milestoneName"/><br/>
     <input type="submit">
 </form>
 </body>

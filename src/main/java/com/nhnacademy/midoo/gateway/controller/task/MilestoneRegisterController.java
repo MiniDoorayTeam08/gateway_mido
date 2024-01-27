@@ -32,6 +32,6 @@ public class MilestoneRegisterController {
                                 @ModelAttribute MilestonePostRequest milestonePostRequest) {
         taskService.postMilestone(projectId, milestonePostRequest);
 
-        return "redirect:/";
+        return "redirect:/project/" + projectId;
     }
 }
