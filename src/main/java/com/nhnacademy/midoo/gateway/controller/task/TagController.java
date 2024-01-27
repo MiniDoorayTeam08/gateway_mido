@@ -39,7 +39,7 @@ public class TagController {
     public String deleteTag(@PathVariable("tagId") int tagId) {
         taskService.deleteTag(tagId);
 
-        return "redirect:/";
+        return "redirect:/myprojects";
 
     }
 }

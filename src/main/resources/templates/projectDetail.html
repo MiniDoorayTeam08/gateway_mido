@@ -7,69 +7,73 @@
 <body>
 <h1 th:text="'프로젝트: ' + ${project.projectName}"></h1>
 <p th:text="'상태: ' + ${project.projectStatus}"></p>
+<p th:text="'관리자: ' + ${project.accountId}"></p>
 <p th:text="'부가설명: ' + ${project.projectExplain}"></p>
 
+<h2>Task</h2>
 <span>
     <a th:href="@{/tasks/register/{projectId}(projectId=${project.projectId})}">업무 추가</a>
 </span>
-
-<span>
-    <a th:href="@{/milestones/register/{projectId}(projectId=${project.projectId})}">마일스톤 추가</a>
-</span>
-
-<span>
-    <a th:href="@{/tags/register/{projectId}(projectId=${project.projectId})}">태그 추가</a>
-</span>
-
-<span>
-    <a th:href="@{/tags/register/{projectId}(projectId=${project.projectId})}">프로젝트 멤버 관리</a>
-</span>
-<!--<div>-->
-<!--    <form method="GET" action="/milestones/register">-->
-<!--        <input type="text" th:value="@{projectId}" name="projectId">-->
-<!--        <input type="submit" th:value="마일스톤 추가">-->
-<!--    </form>-->
-<!--</div>-->
-
-<!--<h2>Tasks</h2>-->
-<!--<ul>-->
-<!--    <li th:each="task : ${projectDetail.tasks}" th:text="${task.name}">-->
-<!--        <a th:href="@{/tasks/{taskId}(taskId=${task.taskId})}"></a>-->
-<!--    </li>-->
-<!--</ul>-->
-
-<!--<h2>Milestones</h2>-->
-<!--<ul>-->
-<!--    <li th:each="milestone : ${projectDetail.milestones}" th:text="${milestone.name}"></li>-->
-<!--</ul>-->
-
-<!--<h2>Tags</h2>-->
-<!--<ul>-->
-<!--    <li th:each="tag : ${projectDetail.tags}" th:text="${tag.name}"></li>-->
-<!--</ul>-->
-<!--</body>-->
-<!--</html>-->
-
-<h2>Tasks</h2>
 <ul>
     <li th:each="task : ${tasks}" th:text="${task.taskTitle}">
         <a th:href="@{/tasks/{taskId}(taskId=${task.taskId})}"></a>
     </li>
 </ul>
+<br/>
 
-<h2>Milestones</h2>
-<ul>
-    <li th:each="milestone : ${milestones}">
-        <a th:href="@{/milestones/{milestoneId}/modify(milestoneId=${milestone.milestoneId})}"
-           th:text="${milestone.milestoneName}"></a>
-    </li>
-</ul>
+<h2>등록된 Milestones</h2>
+<span>
+    <a th:href="@{/milestones/register/{projectId}(projectId=${project.projectId})}">마일스톤 추가</a>
+</span>
+<table border="1">
+    <thead>
+    <tr>
+        <th>마일스톤 이름</th>
+        <th>삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="milestone : ${milestones}">
+        <td>
+            <a th:href="@{/milestones/{milestoneId}/modify(milestoneId=${milestone.milestoneId})}"
+               th:text="${milestone.milestoneName}"></a>
+        </td>
+        <td>
+            <form method="post" th:action="@{/milestones/{milestoneId}/delete(milestoneId=${milestone.milestoneId})}">
+                <input type="text" th:value="${projectId}" hidden="hidden">
+                <input type="submit" th:value="삭제">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br/>
 
-<h2>Tags</h2>
-<ul>
-    <li th:each="tag : ${tags}">
-        <a th:href="@{/tags/{tagId}/modify(tagId=${tag.tagId})}" th:text="${tag.tagName}"></a>
-    </li>
-</ul>
+<h2>등록된 Tags</h2>
+<span>
+    <a th:href="@{/tags/register/{projectId}(projectId=${project.projectId})}">태그 추가</a>
+</span>
+<table border="1">
+    <thead>
+    <tr>
+        <th>마일스톤 이름</th>
+        <th>삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tag : ${tags}">
+        <td>
+            <a th:href="@{/tags/{tagId}/modify(tagId=${tag.tagId})}"
+               th:text="${tag.tagName}"></a>
+        </td>
+        <td>
+            <form method="post" th:action="@{/tags/{tagId}/delete(tagId=${tag.tagId})}">
+                <input type="text" th:value="${projectId}" hidden="hidden">
+                <input type="submit" th:value="삭제">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
