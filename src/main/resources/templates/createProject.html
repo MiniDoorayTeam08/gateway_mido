@@ -17,8 +17,8 @@
         <ul>
             <li th:each="account : ${accounts}">
                 <label>
-                    <input type="checkbox" th:name="projectMemberIdList" th:value="${account.getId}"/>
-                    <span th:text="${account.getId}"></span>
+                    <input type="checkbox" th:name="projectMemberIdList" th:value="${account.id}"/>
+                    <span th:text="${account.id}"></span>
                 </label>
             </li>
         </ul>
