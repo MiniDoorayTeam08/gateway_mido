@@ -5,5 +5,5 @@ import lombok.Value;
 @Value
 public class LoginRequest {
     String id;
-    String pwd;
+    String password;
 }

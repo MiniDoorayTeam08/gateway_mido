@@ -144,6 +144,24 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public MilestoneResponse getMilestoneByMilestoneId(long milestoneId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        String url = taskApiServerProperties.getUrl() + "/milestones/" + milestoneId;
+
+        HttpEntity<MilestonePutRequest> milestoneRequestEntity = new HttpEntity<>(httpHeaders);
+        ResponseEntity<MilestoneResponse> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                milestoneRequestEntity,
+                new ParameterizedTypeReference<>() {
+                });
+
+        return responseEntity.getBody();
+    }
+
+    @Override
     public List<CommentResponse> getCommentsByTaskId(long taskId) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
@@ -248,11 +266,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void postTag(TagPostRequest tagPostRequest) {
+    public void postTag(long projectId, TagPostRequest tagPostRequest) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = taskApiServerProperties.getUrl() + "/tags/" + "${프로젝트아이디}" + "register";
+        String url = taskApiServerProperties.getUrl() + "/tags/" + projectId + "/register";
 
         HttpEntity<TagPostRequest> requestEntity = new HttpEntity<>(tagPostRequest, httpHeaders);
         restTemplate.exchange(

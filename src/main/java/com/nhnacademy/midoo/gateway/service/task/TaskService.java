@@ -29,6 +29,8 @@ public interface TaskService {
 
     MilestoneResponse getMilestoneByTaskId(long taskId);
 
+    MilestoneResponse getMilestoneByMilestoneId(long milestoneId);
+
     List<CommentResponse> getCommentsByTaskId(long taskId);
 
     void putTask(long taskId, TaskPutRequest taskPutRequest);
@@ -41,7 +43,7 @@ public interface TaskService {
 
     List<TagResponse> getTagsByProjectId(long projectId);
 
-    void postTag(TagPostRequest tagPostRequest);
+    void postTag(long projectId, TagPostRequest tagPostRequest);
 
     void putTag(long tagId, TagPutRequest tagPutRequest);
 
@@ -62,4 +64,5 @@ public interface TaskService {
     void deleteComment(CommentIdOnly commentIdOnly);
 
     List<Task> getTasksByAccountId(String accountId);
+
 }

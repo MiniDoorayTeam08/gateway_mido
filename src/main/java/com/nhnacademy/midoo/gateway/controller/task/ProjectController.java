@@ -1,12 +1,12 @@
 package com.nhnacademy.midoo.gateway.controller.task;
 
 import com.nhnacademy.midoo.gateway.domain.ProjectPostRequest;
-import com.nhnacademy.midoo.gateway.domain.account.AccountIdNameOnly;
 import com.nhnacademy.midoo.gateway.domain.response.MilestoneResponse;
 import com.nhnacademy.midoo.gateway.domain.response.ProjectResponse;
 import com.nhnacademy.midoo.gateway.domain.response.TagResponse;
 import com.nhnacademy.midoo.gateway.domain.response.TaskResponse;
 import com.nhnacademy.midoo.gateway.domain.task.entity.ProjectDetail;
+import com.nhnacademy.midoo.gateway.service.account.AccountService;
 import com.nhnacademy.midoo.gateway.service.project.ProjectService;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import java.util.List;
@@ -25,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/project")
 public class ProjectController {
     private final ProjectService projectService;
+    private final AccountService accountService;
     private final TaskService taskService;
 
-    public ProjectController(ProjectService projectService, TaskService taskService) {
+    public ProjectController(ProjectService projectService, AccountService accountService, TaskService taskService) {
         this.projectService = projectService;
+        this.accountService = accountService;
         this.taskService = taskService;
     }
 
@@ -51,8 +53,7 @@ public class ProjectController {
     public String showCreateProjectForm(HttpServletRequest request, Model model) {
         String accountId = request.getSession().getAttribute("id").toString();
 
-        model.addAttribute("accounts", List.of(new AccountIdNameOnly("1", "one"), new AccountIdNameOnly("2", "two"),
-                new AccountIdNameOnly("3", "three")));
+        model.addAttribute("accounts", accountService.getAccountsAll());
         model.addAttribute("accountId", accountId);
         model.addAttribute("project", new ProjectDetail());
         return "createProject";

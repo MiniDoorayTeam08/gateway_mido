@@ -14,6 +14,11 @@
     <span>업무내용: </span>
     <br/>
     <textarea name="taskContent" rows="10" cols="100"></textarea><br/>
+    <label for="milestonDropdown">마일스톤 :</label>
+    <select id="milestonDropdown" name="milestoneId" th:value="${milestones}">
+        <option th:each="milestone : ${milestones}" th:value="${milestone.milestoneId}"
+                th:text="${milestone.milestoneName}"></option>
+    </select>
     <input type="text" name="projectId" th:value="${projectId}" hidden="hidden">
     <input type="submit" th:value="저장">
 </form>

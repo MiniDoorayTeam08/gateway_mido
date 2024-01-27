@@ -14,13 +14,13 @@ public class AccountDto {
 
     private String id;
     private String email;
-    private String pwd;
+    private String password;
     private String name;
     private String status;
 
-    public AccountDto(String id, String email, String pwd) {
+    public AccountDto(String id, String email, String password) {
         this.id = id;
         this.email = email;
-        this.pwd = pwd;
+        this.password = password;
     }
 }

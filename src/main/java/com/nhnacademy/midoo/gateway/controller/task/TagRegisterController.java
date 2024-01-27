@@ -27,10 +27,10 @@ public class TagRegisterController {
         return "tagRegister";
     }
 
-    @PostMapping
-    public String postTag(@ModelAttribute TagPostRequest tagPostRequest) {
-        taskService.postTag(tagPostRequest);
+    @PostMapping("/{projectId}")
+    public String postTag(@PathVariable("projectId") long projectId, @ModelAttribute TagPostRequest tagPostRequest) {
+        taskService.postTag(projectId, tagPostRequest);
 
-        return "redirect:/";
+        return "redirect:/project/" + projectId;
     }
 }

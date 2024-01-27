@@ -5,15 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="/tags/register">
-    태그명 : <input type="text" name="name">
-    <label for="milestonDropdown">마일스톤 :</label>
-    <select id="milestonDropdown" name="milestoneId" th:value="${milestones}">
-        <option th:each="milestone : ${milestones}" th:value="${milestone.milestoneId}"
-                th:text="${milestone.milestoneName}"></option>
-    </select>
-    <input type="text" name="projectId" hidden="hidden">
-    <input type="submit" th:value="확인">
+<form method="post" th:action="@{/tags/register/{projectId}(projectId=${projectId})}">
+    태그명 : <input type="text" name="tagName">
+    <input type="submit" th:value="등록">
 </form>
 </body>
 </html>

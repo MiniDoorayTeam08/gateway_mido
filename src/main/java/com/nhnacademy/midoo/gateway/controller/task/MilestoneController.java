@@ -22,7 +22,9 @@ public class MilestoneController {
     @GetMapping("/{milestoneId}/modify")
     public String getMilestoneUpdateForm(@PathVariable("milestoneId") long milestoneId,
                                          Model model) {
-        return "redirect:/";
+        model.addAttribute("milestone", taskService.getMilestoneByMilestoneId(milestoneId));
+
+        return "milestoneUpdate";
     }
 
     @PostMapping("/{milestoneId}/modify")
