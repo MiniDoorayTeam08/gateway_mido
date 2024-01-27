@@ -67,7 +67,7 @@ public class ProjectServiceImpl implements ProjectService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = taskUrl + "/projects/detail/" + projectId;
+        String url = taskUrl + "/projects/" + projectId;
 
         HttpEntity<Void> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<ProjectResponse> responseEntity = template.exchange(
