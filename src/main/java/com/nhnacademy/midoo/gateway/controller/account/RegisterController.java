@@ -1,7 +1,6 @@
 package com.nhnacademy.midoo.gateway.controller.account;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nhnacademy.midoo.gateway.domain.account.request.AccountCreateRequest;
 import com.nhnacademy.midoo.gateway.service.account.AccountService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +24,7 @@ public class RegisterController {
     @PostMapping
     public String registerUser(@RequestParam("id") String id,
                                @RequestParam("pwd") String paaswored,
-                               @RequestParam("email") String email) throws JsonProcessingException {
+                               @RequestParam("email") String email) {
         accountService.createAccount(new AccountCreateRequest(id, paaswored, email, "활동"));
 
         return "redirect:/login";

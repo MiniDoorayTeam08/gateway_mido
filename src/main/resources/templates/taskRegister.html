@@ -19,6 +19,17 @@
         <option th:each="milestone : ${milestones}" th:value="${milestone.milestoneId}"
                 th:text="${milestone.milestoneName}"></option>
     </select>
+    <br/>
+    <br/>
+    <label for="tagList">태그 설정</label>
+    <ul id="tagList">
+        <li th:each="tag : ${tags}">
+            <label>
+                <input type="checkbox" th:name="projectMemberIdList" th:value="${tag.tagId}"/>
+                <span th:text="${tag.tagName}"></span>
+            </label>
+        </li>
+    </ul>
     <input type="text" name="projectId" th:value="${projectId}" hidden="hidden">
     <input type="submit" th:value="저장">
 </form>

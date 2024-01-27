@@ -13,8 +13,10 @@
 
     <label>이름: <input type="text" th:field="*{projectName}"/></label><br/>
     <label>설명: <textarea th:field="*{projectExplain}"></textarea></label><br/>
+    <br>
+    <label for="accountList">프로젝트 멤버 선택</label>
     <div>
-        <ul>
+        <ul id="accountList">
             <li th:each="account : ${accounts}">
                 <label>
                     <input type="checkbox" th:name="projectMemberIdList" th:value="${account.id}"/>

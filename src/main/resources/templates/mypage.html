@@ -13,14 +13,17 @@
     <input type="text" th:name="id" th:value="${accountInfo.id}" hidden="hidden">
     <span th:text="'상태 수정'"/>
     <select name="status">
-        <option value="active">활동</option>
-        <option value="deactivated">탈퇴</option>
-        <option value="inactive">휴먼</option>
+        <option value="가입">가입</option>
+        <option value="탈퇴">탈퇴</option>
+        <option value="휴먼">휴먼</option>
     </select>
-    <br/>
-    <!--    <input type="text" name="status"/><br/>-->
+    <span>
     <input type="submit" th:value="수정"/>
+    </span>
 </form>
 <a th:href="@{/myprojects}" th:text="'내 프로젝트'"></a>
 </body>
+<form method="post" action="/logout">
+    <input type="submit" th:value="로그아웃">
+</form>
 </html>

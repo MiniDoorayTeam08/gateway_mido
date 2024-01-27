@@ -1,12 +1,12 @@
 package com.nhnacademy.midoo.gateway.controller.account;
 
+import com.nhnacademy.midoo.gateway.config.IdProperties;
 import com.nhnacademy.midoo.gateway.domain.account.request.LoginRequest;
 import com.nhnacademy.midoo.gateway.domain.account.response.AccountResponse;
 import com.nhnacademy.midoo.gateway.service.account.AccountServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/login")
 @RequiredArgsConstructor
 public class LoginController {
-    @Autowired
     private final AccountServiceImpl accountServiceImpl;
+    private final IdProperties idProperties;
 
 
     @GetMapping
-    String getLoginForm() {
+    String getLoginForm(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute(idProperties.getId()) != null) {
+            return "mypage";
+        }
         return "loginForm";
     }
 

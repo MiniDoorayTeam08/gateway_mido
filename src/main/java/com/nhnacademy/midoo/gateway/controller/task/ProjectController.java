@@ -1,5 +1,6 @@
 package com.nhnacademy.midoo.gateway.controller.task;
 
+import com.nhnacademy.midoo.gateway.config.IdProperties;
 import com.nhnacademy.midoo.gateway.domain.ProjectPostRequest;
 import com.nhnacademy.midoo.gateway.domain.response.MilestoneResponse;
 import com.nhnacademy.midoo.gateway.domain.response.ProjectResponse;
@@ -11,6 +12,7 @@ import com.nhnacademy.midoo.gateway.service.project.ProjectService;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,16 +25,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @Controller
 @RequestMapping("/project")
+@RequiredArgsConstructor
 public class ProjectController {
     private final ProjectService projectService;
     private final AccountService accountService;
     private final TaskService taskService;
-
-    public ProjectController(ProjectService projectService, AccountService accountService, TaskService taskService) {
-        this.projectService = projectService;
-        this.accountService = accountService;
-        this.taskService = taskService;
-    }
+    private final IdProperties idProperties;
 
     @GetMapping("/{projectId}")
     public String showProjectDetail(@PathVariable Long projectId, Model model) {
@@ -51,7 +49,7 @@ public class ProjectController {
 
     @GetMapping("/create")
     public String showCreateProjectForm(HttpServletRequest request, Model model) {
-        String accountId = request.getSession().getAttribute("id").toString();
+        String accountId = request.getSession().getAttribute(idProperties.getId()).toString();
 
         model.addAttribute("accounts", accountService.getAccountsAll());
         model.addAttribute("accountId", accountId);
