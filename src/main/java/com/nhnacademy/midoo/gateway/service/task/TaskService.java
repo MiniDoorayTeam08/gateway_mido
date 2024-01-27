@@ -39,6 +39,8 @@ public interface TaskService {
 
     TagResponse getTagByTagId(long tagId);
 
+    List<TagResponse> getTagsByProjectId(long projectId);
+
     void postTag(TagPostRequest tagPostRequest);
 
     void putTag(long tagId, TagPutRequest tagPutRequest);

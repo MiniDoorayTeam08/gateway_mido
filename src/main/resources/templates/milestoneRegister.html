@@ -7,8 +7,6 @@
 <body>
 <form method="post" action="/milestones/register">
     <span th:text="단계명"></span>: <input type="text" name="name"/><br/>
-    <span th:text="시작일"></span>: <input type="date" name="startDate"/><br/>
-    <span th:text="종료일"></span>: <input type="date" name="endDate"/><br/>
     <input type="text" name="projectId" th:value="${projectId}" hidden="hidden">
     <input type="submit">
 </form>

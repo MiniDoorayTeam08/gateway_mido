@@ -167,7 +167,7 @@ public class TaskServiceImpl implements TaskService {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         String url = taskApiServerProperties.getUrl() + "/tasks/register";
-        
+
         HttpEntity<TaskPostRequest> requestEntity = new HttpEntity<>(taskPostRequest, httpHeaders);
         restTemplate.exchange(
                 url,
@@ -220,6 +220,24 @@ public class TaskServiceImpl implements TaskService {
 
         HttpEntity<TagPutRequest> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<TagResponse> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                });
+
+        return responseEntity.getBody();
+    }
+
+    @Override
+    public List<TagResponse> getTagsByProjectId(long projectId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        String url = taskApiServerProperties.getUrl() + "/tags/" + projectId;
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(httpHeaders);
+        ResponseEntity<List<TagResponse>> responseEntity = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 requestEntity,

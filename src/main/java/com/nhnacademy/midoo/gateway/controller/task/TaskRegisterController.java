@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -21,9 +20,11 @@ public class TaskRegisterController {
     }
 
     @GetMapping("/{projectId}")
-    public String getTaskRegisterForm(@PathVariable("projectId") int projectId,
+    public String getTaskRegisterForm(@PathVariable("projectId") long projectId,
                                       Model model) {
         model.addAttribute("projectId", projectId);
+        model.addAttribute("milestones", taskService.getMilestoneByProjectId(projectId));
+        model.addAttribute("tags", taskService.getTagsByProjectId(projectId));
 
         return "taskRegister";
     }
