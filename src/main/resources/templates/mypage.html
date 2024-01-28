@@ -13,9 +13,7 @@
     <input type="text" th:name="id" th:value="${accountInfo.id}" hidden="hidden">
     <span th:text="'상태 수정'"/>
     <select name="status">
-        <option value="가입">가입</option>
-        <option value="탈퇴">탈퇴</option>
-        <option value="휴먼">휴먼</option>
+        <option th:each="status : ${accountStatus}" th:value="${status.name}" th:text="${status.name}"></option>
     </select>
     <span>
     <input type="submit" th:value="수정"/>

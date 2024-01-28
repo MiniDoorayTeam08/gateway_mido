@@ -2,6 +2,7 @@ package com.nhnacademy.midoo.gateway.controller.account;
 
 
 import com.nhnacademy.midoo.gateway.config.IdProperties;
+import com.nhnacademy.midoo.gateway.domain.account.AccountStatus;
 import com.nhnacademy.midoo.gateway.domain.account.request.AccountStatusModifyRequest;
 import com.nhnacademy.midoo.gateway.service.account.AccountServiceImpl;
 import javax.servlet.http.HttpServletRequest;
@@ -30,12 +31,12 @@ public class MypageController {
         model.addAttribute("accountInfo",
                 accountServiceImpl.getAccountById(
                         request.getSession(true).getAttribute(idProperties.getId()).toString()));
+        model.addAttribute("accountStatus", AccountStatus.values());
         return "mypage";
     }
 
     @PostMapping
     public String userModify(@ModelAttribute AccountStatusModifyRequest request) {
-        log.info("id : {}, status : {}", request.getId(), request.getStatus());
         accountServiceImpl.putAccount(request);
         return "redirect:/mypage";
     }

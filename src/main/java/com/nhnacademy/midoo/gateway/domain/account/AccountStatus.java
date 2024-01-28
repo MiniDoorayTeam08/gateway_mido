@@ -8,7 +8,6 @@ import lombok.ToString;
 public enum AccountStatus {
     가입, 탈퇴, 휴먼;
 
-
     public String getName() {
         return this.name();
     }
