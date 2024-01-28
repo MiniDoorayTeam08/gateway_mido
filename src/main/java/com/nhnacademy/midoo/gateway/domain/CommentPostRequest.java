@@ -1,10 +1,9 @@
 package com.nhnacademy.midoo.gateway.domain;
 
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 public class CommentPostRequest {
     String commentContent;
-    long taskId;
-    long accountId;
+    String accountId;
 }

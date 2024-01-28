@@ -1,7 +1,6 @@
 package com.nhnacademy.midoo.gateway.controller.task;
 
 import com.nhnacademy.midoo.gateway.domain.CommentIdOnly;
-
 import com.nhnacademy.midoo.gateway.domain.CommentPutRequest;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import org.springframework.stereotype.Controller;
@@ -21,31 +20,29 @@ public class CommentController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/register")
-    public String getCommentRegisterForm() {
-        return "commentRegister";
-    }
-
     @GetMapping("{commentId}/modify")
-    public String getCommentUpdateForm(@PathVariable("commentId") int commentId,
+    public String getCommentUpdateForm(@PathVariable("commentId") long commentId,
                                        Model model) {
-        model.addAttribute(taskService.getCommentByCommentId(commentId));
+        model.addAttribute("comment", taskService.getCommentByCommentId(commentId));
 
         return "commentUpdate";
     }
 
-    @PostMapping("/modify")
-    public String putComment(@ModelAttribute CommentPutRequest commentPutRequest) {
-        taskService.putComment(commentPutRequest);
+    @PostMapping("/{commentId}/modify/{taskId}")
+    public String putComment(@PathVariable("commentId") long commentId,
+                             @PathVariable("taskId") long taskId,
+                             @ModelAttribute CommentPutRequest commentPutRequest) {
+        taskService.putComment(commentId, commentPutRequest);
 
-        return "redirect:/";
+        return "redirect:/tasks/" + taskId;
     }
 
-    @PostMapping("/delete")
-    public String deleteComment(@ModelAttribute CommentIdOnly commentIdOnly) {
+    @PostMapping("/delete/{taskId}")
+    public String deleteComment(@PathVariable("taskId") long taskId,
+                                @ModelAttribute CommentIdOnly commentIdOnly) {
         taskService.deleteComment(commentIdOnly);
 
-        return "redirect:/";
+        return "redirect:/tasks/" + taskId;
 
     }
 }

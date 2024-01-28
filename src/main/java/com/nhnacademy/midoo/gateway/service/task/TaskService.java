@@ -8,6 +8,8 @@ import com.nhnacademy.midoo.gateway.domain.MilestonePutRequest;
 import com.nhnacademy.midoo.gateway.domain.TagPostRequest;
 import com.nhnacademy.midoo.gateway.domain.TagPutRequest;
 import com.nhnacademy.midoo.gateway.domain.Task;
+import com.nhnacademy.midoo.gateway.domain.TaskDetailResponse;
+import com.nhnacademy.midoo.gateway.domain.TaskDto;
 import com.nhnacademy.midoo.gateway.domain.TaskPostRequest;
 import com.nhnacademy.midoo.gateway.domain.TaskPutRequest;
 import com.nhnacademy.midoo.gateway.domain.response.CommentResponse;
@@ -17,7 +19,7 @@ import com.nhnacademy.midoo.gateway.domain.response.TaskResponse;
 import java.util.List;
 
 public interface TaskService {
-    TaskResponse getTaskByTaskId(long taskId);
+    TaskDto getTaskByTaskId(long taskId);
 
     List<TaskResponse> getTaskByProjectId(long projectId);
 
@@ -57,12 +59,13 @@ public interface TaskService {
 
     CommentResponse getCommentByCommentId(long commentId);
 
-    void postComment(CommentPostRequest commentPostRequest);
+    void postComment(long taskId, CommentPostRequest commentPostRequest);
 
-    void putComment(CommentPutRequest commentPutRequest);
+    void putComment(long commentId, CommentPutRequest commentPutRequest);
 
     void deleteComment(CommentIdOnly commentIdOnly);
 
     List<Task> getTasksByAccountId(String accountId);
 
+    TaskDetailResponse getTaskDetail(long taskId);
 }

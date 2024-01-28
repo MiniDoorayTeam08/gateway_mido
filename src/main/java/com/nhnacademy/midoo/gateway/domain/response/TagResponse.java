@@ -6,5 +6,4 @@ import lombok.Value;
 public class TagResponse {
     long tagId;
     String tagName;
-    long projectId;
 }

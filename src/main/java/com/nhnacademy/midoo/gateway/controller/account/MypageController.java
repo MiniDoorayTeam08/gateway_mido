@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-@RequestMapping("/mypage")
+@RequestMapping({"/mypage", "/"})
 public class MypageController {
     private final AccountServiceImpl accountServiceImpl;
     private final IdProperties idProperties;

@@ -7,29 +7,61 @@
 <body>
 업무명 : <span th:text="${task.taskTitle}"></span>
 <br/>
+<br/>
 업무 내용 : <br/>
 <span th:text="${task.taskContent}"></span>
 <br/>
-댓글 :
 <br/>
-<table border="1">
-    <thead>
-    <th>내용</th>
-    <th>작성자Id</th>
-    <th>수정</th>
-    </thead>
-    <tbody>
-    <tr th:each="comment : ${comments}">
-        <td th:text="${comment.commentContent}"></td>
-        <td th:text="${comment.accountId}"></td>
-        <td th:if="${accountId} == ${comment.accountId}">
-            <a th:href="@{/{commentId}/modify(commentId=${comment.commentId})}" th:value="수정"></a>
-        </td>
-        <td th:unless="${accountId} == ${comment.accountId}">
+<a th:href="@{/{projectId}/tasks/{taskId}/modify(taskId=${taskId}, projectId=${projectId})}" th:text="수정하기"></a>
+<br/>
+<br/>
+<div>
+    <h2>Milestone</h2>
+    <span th:if="${milestone != null}" th:text="${milestone.milestoneName}"></span>
+</div>
 
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div>
+    <h2>Tag</h2>
+    <p th:each="tag : ${tags}">
+        <span th:text="${tag.tagName}  "></span>
+    </p>
+</div>
+<div>
+    댓글 :
+    <br/>
+    <form method="post" th:action="@{/comments/register/{taskId}(taskId=${task.taskId})}">
+        <textarea name="commentContent" rows="1" cols="20"></textarea>
+        <input type="text" name="accountId" th:value="${accountId}" hidden="hidden">
+        <input type="submit" th:value="댓글달기">
+    </form>
+    <table border="1">
+        <thead>
+        <th>내용</th>
+        <th>작성자Id</th>
+        <th>수정</th>
+        <th>삭제</th>
+        </thead>
+        <tbody>
+        <tr th:each="comment : ${comments}">
+            <td th:text="${comment.commentContent}"></td>
+            <td th:text="${comment.accountId}"></td>
+            <td th:if="${accountId eq comment.accountId}">
+                <a th:href="@{/comments/{commentId}/modify(commentId=${comment.commentId})}" th:text="수정"></a>
+            </td>
+            <td th:if="${accountId ne comment.accountId}">
+
+            </td>
+            <td th:if="${accountId eq comment.accountId}">
+                <form method="post" th:action="@{/comments/delete/{taskId}(taskId=${taskId})}">
+                    <input th:value="${comment.commentId}" name="commentId" hidden="hidden">
+                    <input type="submit" th:value="삭제">
+                </form>
+            </td>
+            <td th:if="${accountId ne comment.accountId}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

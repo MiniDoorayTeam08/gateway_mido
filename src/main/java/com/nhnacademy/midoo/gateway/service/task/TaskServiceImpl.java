@@ -10,6 +10,8 @@ import com.nhnacademy.midoo.gateway.domain.MilestonePutRequest;
 import com.nhnacademy.midoo.gateway.domain.TagPostRequest;
 import com.nhnacademy.midoo.gateway.domain.TagPutRequest;
 import com.nhnacademy.midoo.gateway.domain.Task;
+import com.nhnacademy.midoo.gateway.domain.TaskDetailResponse;
+import com.nhnacademy.midoo.gateway.domain.TaskDto;
 import com.nhnacademy.midoo.gateway.domain.TaskPostRequest;
 import com.nhnacademy.midoo.gateway.domain.TaskPutRequest;
 import com.nhnacademy.midoo.gateway.domain.response.CommentResponse;
@@ -37,14 +39,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskResponse getTaskByTaskId(long taskId) {
+    public TaskDto getTaskByTaskId(long taskId) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = taskApiServerProperties.getUrl() + "/tasks/" + taskId;
+        String url = taskApiServerProperties.getUrl() + "/tasks/" + taskId + "/taskDto";
 
         HttpEntity<Void> taskRequestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<TaskResponse> responseEntity = restTemplate.exchange(
+        ResponseEntity<TaskDto> responseEntity = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 taskRequestEntity,
@@ -366,7 +368,7 @@ public class TaskServiceImpl implements TaskService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = taskApiServerProperties.getUrl() + "/comments/" + commentId;
+        String url = taskApiServerProperties.getUrl() + "/comments/" + commentId + "/comment";
 
         HttpEntity<CommentPutRequest> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<CommentResponse> responseEntity = restTemplate.exchange(
@@ -380,11 +382,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void postComment(CommentPostRequest commentPostRequest) {
+    public void postComment(long taskId, CommentPostRequest commentPostRequest) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = taskApiServerProperties.getUrl() + "/comments/" + commentPostRequest.getTaskId() + "/register";
+        String url = taskApiServerProperties.getUrl() + "/comments/" + taskId + "/register";
 
         HttpEntity<CommentPostRequest> requestEntity = new HttpEntity<>(commentPostRequest, httpHeaders);
         restTemplate.exchange(
@@ -396,11 +398,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void putComment(CommentPutRequest commentPutRequest) {
+    public void putComment(long commentId, CommentPutRequest commentPutRequest) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        String url = taskApiServerProperties.getUrl() + "/comments/" + commentPutRequest.getCommentId() + "/modify";
+        String url = taskApiServerProperties.getUrl() + "/comments/" + commentId;
 
         HttpEntity<CommentPutRequest> requestEntity = new HttpEntity<>(commentPutRequest, httpHeaders);
         restTemplate.exchange(
@@ -435,6 +437,24 @@ public class TaskServiceImpl implements TaskService {
 
         HttpEntity<AccountIdOnly> requestEntity = new HttpEntity<>(new AccountIdOnly(accountId), httpHeaders);
         ResponseEntity<List<Task>> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                });
+
+        return responseEntity.getBody();
+    }
+
+    @Override
+    public TaskDetailResponse getTaskDetail(long taskId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        String url = taskApiServerProperties.getUrl() + "/tasks/" + taskId + "/detail";
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(httpHeaders);
+        ResponseEntity<TaskDetailResponse> responseEntity = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 requestEntity,

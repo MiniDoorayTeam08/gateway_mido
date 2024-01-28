@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="/tasks/register">
+<form method="post" th:action="@{/{projectId}/tasks/{taskId}/modify(projectId=${projectId}, taskId=${task.taskId})}">
     <span>업무명: </span>
     <br/>
     <input type="text" name="taskTitle" th:value="${task.taskTitle}"/>
@@ -13,8 +13,26 @@
     <br/>
     <span>업무내용: </span>
     <br/>
-    <textarea name="taskContent" th:value="${task.taskContent}" rows="10" cols="100"></textarea><br/>
-    <input type="text" name="projectId" th:value="${task.projectId}" hidden="hidden">
+    <textarea name="taskContent" th:text="${task.taskContent}" rows="10" cols="100"></textarea><br/>
+    <br/>
+    <label for="milestonDropdown">마일스톤 :</label>
+    <select id="milestonDropdown" name="milestoneId" th:value="${milestones}">
+        <option th:each="milestone : ${milestones}" th:value="${milestone.milestoneId}"
+                th:text="${milestone.milestoneName}"></option>
+    </select>
+    <br/>
+    <br/>
+    <label for="tagList">태그 설정</label>
+    <ul id="tagList">
+        <li th:each="tag : ${tags}">
+            <label>
+                <input type="checkbox" th:name="tagListId" th:value="${tag.tagId}"/>
+                <span th:text="${tag.tagName}"></span>
+            </label>
+        </li>
+    </ul>
+    <input type="text" name="projectId" th:value="${projectId}" hidden="hidden">
+    <input type="text" name="accountId" th:value="${accountId}" hidden="hidden">
     <input type="submit" th:value="수정">
 </form>
 </body>

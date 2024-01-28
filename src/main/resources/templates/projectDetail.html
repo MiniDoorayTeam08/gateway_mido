@@ -14,11 +14,28 @@
 <span>
     <a th:href="@{/tasks/register/{projectId}(projectId=${project.projectId})}">업무 추가</a>
 </span>
-<ul>
-    <li th:each="task : ${tasks}" th:text="${task.taskTitle}">
-        <a th:href="@{/tasks/{taskId}(taskId=${task.taskId})}"></a>
-    </li>
-</ul>
+<table border="1">
+    <thead>
+    <tr>
+        <th>업무명</th>
+        <th>삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${tasks}">
+        <td>
+            <a th:href="@{/{projectId}/tasks/{taskId}(projectId=${project.projectId}, taskId=${task.taskId})}"
+               th:text="${task.taskTitle}"></a>
+        </td>
+        <td>
+            <form method="post" th:action="@{/tasks/{taskId}/delete(taskId=${task.taskId})}">
+                <input type="text" th:value="${projectId}" hidden="hidden">
+                <input type="submit" th:value="삭제">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 <br/>
 
 <h2>등록된 Milestones</h2>

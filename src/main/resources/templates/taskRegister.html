@@ -26,7 +26,7 @@
     <ul id="tagList">
         <li th:each="tag : ${tags}">
             <label>
-                <input type="checkbox" th:name="projectMemberIdList" th:value="${tag.tagId}"/>
+                <input type="checkbox" th:name="tagListId" th:value="${tag.tagId}"/>
                 <span th:text="${tag.tagName}"></span>
             </label>
         </li>

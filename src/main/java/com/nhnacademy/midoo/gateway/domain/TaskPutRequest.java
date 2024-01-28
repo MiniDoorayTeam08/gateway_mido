@@ -1,13 +1,19 @@
 package com.nhnacademy.midoo.gateway.domain;
 
+import java.util.List;
 import lombok.Value;
 
 @Value
 public class TaskPutRequest {
-    long taskId;
     String taskTitle;
+
     String taskContent;
-    long projectId;
-    long milestoneId;
+
+    Long projectId;
+
+    Long milestoneId;
+
+    List<Long> tagListId;
+
     String accountId;
 }
