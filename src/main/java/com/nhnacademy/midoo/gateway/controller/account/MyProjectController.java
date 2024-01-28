@@ -1,8 +1,8 @@
 package com.nhnacademy.midoo.gateway.controller.account;
 
 import com.nhnacademy.midoo.gateway.config.IdProperties;
-import com.nhnacademy.midoo.gateway.domain.task.entity.ProjectInfo;
-import com.nhnacademy.midoo.gateway.service.project.ProjectService;
+import com.nhnacademy.midoo.gateway.domain.project.ProjectInfo;
+import com.nhnacademy.midoo.gateway.service.task.ProjectService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

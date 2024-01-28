@@ -1,7 +1,7 @@
 package com.nhnacademy.midoo.gateway.controller.task;
 
 import com.nhnacademy.midoo.gateway.config.IdProperties;
-import com.nhnacademy.midoo.gateway.domain.TaskPostRequest;
+import com.nhnacademy.midoo.gateway.domain.task.TaskPostRequest;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

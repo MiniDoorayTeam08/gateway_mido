@@ -1,6 +1,6 @@
 package com.nhnacademy.midoo.gateway.controller.task;
 
-import com.nhnacademy.midoo.gateway.domain.MilestonePostRequest;
+import com.nhnacademy.midoo.gateway.domain.milestone.MilestonePostRequest;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

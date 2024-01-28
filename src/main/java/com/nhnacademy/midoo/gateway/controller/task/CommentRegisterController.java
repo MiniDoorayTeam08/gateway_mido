@@ -1,6 +1,6 @@
 package com.nhnacademy.midoo.gateway.controller.task;
 
-import com.nhnacademy.midoo.gateway.domain.CommentPostRequest;
+import com.nhnacademy.midoo.gateway.domain.comment.CommentPostRequest;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

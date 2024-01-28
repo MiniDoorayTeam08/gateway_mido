@@ -1,6 +1,6 @@
 package com.nhnacademy.midoo.gateway.controller.task;
 
-import com.nhnacademy.midoo.gateway.domain.TagPostRequest;
+import com.nhnacademy.midoo.gateway.domain.tag.TagPostRequest;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

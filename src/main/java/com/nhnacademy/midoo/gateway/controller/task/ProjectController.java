@@ -1,14 +1,14 @@
 package com.nhnacademy.midoo.gateway.controller.task;
 
 import com.nhnacademy.midoo.gateway.config.IdProperties;
-import com.nhnacademy.midoo.gateway.domain.ProjectPostRequest;
-import com.nhnacademy.midoo.gateway.domain.response.MilestoneResponse;
-import com.nhnacademy.midoo.gateway.domain.response.ProjectResponse;
-import com.nhnacademy.midoo.gateway.domain.response.TagResponse;
-import com.nhnacademy.midoo.gateway.domain.response.TaskResponse;
-import com.nhnacademy.midoo.gateway.domain.task.entity.ProjectDetail;
+import com.nhnacademy.midoo.gateway.domain.milestone.MilestoneResponse;
+import com.nhnacademy.midoo.gateway.domain.project.ProjectDetail;
+import com.nhnacademy.midoo.gateway.domain.project.ProjectPostRequest;
+import com.nhnacademy.midoo.gateway.domain.project.ProjectResponse;
+import com.nhnacademy.midoo.gateway.domain.tag.TagResponse;
+import com.nhnacademy.midoo.gateway.domain.task.TaskResponse;
 import com.nhnacademy.midoo.gateway.service.account.AccountService;
-import com.nhnacademy.midoo.gateway.service.project.ProjectService;
+import com.nhnacademy.midoo.gateway.service.task.ProjectService;
 import com.nhnacademy.midoo.gateway.service.task.TaskService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

@@ -1,21 +1,21 @@
 package com.nhnacademy.midoo.gateway.service.task;
 
-import com.nhnacademy.midoo.gateway.domain.CommentIdOnly;
-import com.nhnacademy.midoo.gateway.domain.CommentPostRequest;
-import com.nhnacademy.midoo.gateway.domain.CommentPutRequest;
-import com.nhnacademy.midoo.gateway.domain.MilestonePostRequest;
-import com.nhnacademy.midoo.gateway.domain.MilestonePutRequest;
-import com.nhnacademy.midoo.gateway.domain.TagPostRequest;
-import com.nhnacademy.midoo.gateway.domain.TagPutRequest;
-import com.nhnacademy.midoo.gateway.domain.Task;
-import com.nhnacademy.midoo.gateway.domain.TaskDetailResponse;
-import com.nhnacademy.midoo.gateway.domain.TaskDto;
-import com.nhnacademy.midoo.gateway.domain.TaskPostRequest;
-import com.nhnacademy.midoo.gateway.domain.TaskPutRequest;
-import com.nhnacademy.midoo.gateway.domain.response.CommentResponse;
-import com.nhnacademy.midoo.gateway.domain.response.MilestoneResponse;
-import com.nhnacademy.midoo.gateway.domain.response.TagResponse;
-import com.nhnacademy.midoo.gateway.domain.response.TaskResponse;
+import com.nhnacademy.midoo.gateway.domain.comment.CommentIdOnly;
+import com.nhnacademy.midoo.gateway.domain.comment.CommentPostRequest;
+import com.nhnacademy.midoo.gateway.domain.comment.CommentPutRequest;
+import com.nhnacademy.midoo.gateway.domain.comment.CommentResponse;
+import com.nhnacademy.midoo.gateway.domain.milestone.MilestonePostRequest;
+import com.nhnacademy.midoo.gateway.domain.milestone.MilestonePutRequest;
+import com.nhnacademy.midoo.gateway.domain.milestone.MilestoneResponse;
+import com.nhnacademy.midoo.gateway.domain.tag.TagPostRequest;
+import com.nhnacademy.midoo.gateway.domain.tag.TagPutRequest;
+import com.nhnacademy.midoo.gateway.domain.tag.TagResponse;
+import com.nhnacademy.midoo.gateway.domain.task.Task;
+import com.nhnacademy.midoo.gateway.domain.task.TaskDetailResponse;
+import com.nhnacademy.midoo.gateway.domain.task.TaskDto;
+import com.nhnacademy.midoo.gateway.domain.task.TaskPostRequest;
+import com.nhnacademy.midoo.gateway.domain.task.TaskPutRequest;
+import com.nhnacademy.midoo.gateway.domain.task.TaskResponse;
 import java.util.List;
 
 public interface TaskService {
