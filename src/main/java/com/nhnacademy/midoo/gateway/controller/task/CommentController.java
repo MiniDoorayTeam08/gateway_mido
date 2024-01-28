@@ -34,7 +34,7 @@ public class CommentController {
                              @ModelAttribute CommentPutRequest commentPutRequest) {
         taskService.putComment(commentId, commentPutRequest);
 
-        return "redirect:/tasks/" + taskId;
+        return "redirect:/myprojects";
     }
 
     @PostMapping("/delete/{taskId}")
@@ -42,7 +42,7 @@ public class CommentController {
                                 @ModelAttribute CommentIdOnly commentIdOnly) {
         taskService.deleteComment(commentIdOnly);
 
-        return "redirect:/tasks/" + taskId;
+        return "redirect:/myprojects";
 
     }
 }
