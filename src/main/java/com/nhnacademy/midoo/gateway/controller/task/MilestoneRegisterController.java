@@ -20,7 +20,7 @@ public class MilestoneRegisterController {
     }
 
     @GetMapping("/{projectId}")
-    public String getMilestoneForm(@PathVariable("projectId") int projectId,
+    public String getMilestoneForm(@PathVariable("projectId") long projectId,
                                    Model model) {
         model.addAttribute("projectId", projectId);
 

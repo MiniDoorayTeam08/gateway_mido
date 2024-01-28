@@ -15,7 +15,7 @@ public interface AccountService {
 
     Boolean existAccount(String accountId);
 
-    AccountResponse matchIdPwd(LoginRequest request);
+    boolean matchIdPwd(LoginRequest request);
 
     String createAccount(AccountCreateRequest request);
 

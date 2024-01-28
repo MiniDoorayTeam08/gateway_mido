@@ -8,7 +8,7 @@
 <h1 th:text="'프로젝트: ' + ${project.projectName}"></h1>
 <p th:text="'상태: ' + ${project.projectStatus}"></p>
 <p th:text="'관리자: ' + ${project.accountId}"></p>
-<p th:text="'부가설명: ' + ${project.projectExplain}"></p>
+<p th:text="'프로젝트 설명: ' + ${project.projectExplain}"></p>
 
 <h2>Task</h2>
 <span>
@@ -28,7 +28,8 @@
                th:text="${task.taskTitle}"></a>
         </td>
         <td>
-            <form method="post" th:action="@{/tasks/{taskId}/delete(taskId=${task.taskId})}">
+            <form method="post"
+                  th:action="@{/{projectId}/tasks/{taskId}/delete(projectId=${task.projectId}, taskId=${task.taskId})}">
                 <input type="text" th:value="${projectId}" hidden="hidden">
                 <input type="submit" th:value="삭제">
             </form>

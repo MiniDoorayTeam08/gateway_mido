@@ -31,7 +31,7 @@ public class ProjectController {
     private final AccountService accountService;
     private final TaskService taskService;
     private final IdProperties idProperties;
-
+    
     @GetMapping("/{projectId}")
     public String showProjectDetail(@PathVariable Long projectId, Model model) {
         ProjectResponse projectResponse = projectService.getProjectDetail(projectId);
@@ -62,20 +62,5 @@ public class ProjectController {
         projectService.createProject(projectPostRequest);
 
         return "redirect:/myprojects";
-    }
-
-//    @GetMapping("/{projectId}/edit")
-//    public String showEditProjectForm(@PathVariable Long projectId, Model model) {
-//        ProjectDetail projectDetail = projectService.getProjectDetail(projectId);
-//        model.addAttribute("project", projectDetail);
-//        return "editProject";
-//    }
-
-    @PostMapping("/{projectId}/edit")
-    public String editProject(@PathVariable Long projectId, @ModelAttribute ProjectDetail updatedProjectDetail) {
-
-//        projectService.editProject(projectId, updatedProjectDetail);
-//        + projectId;
-        return "redirect:/project/";
     }
 }

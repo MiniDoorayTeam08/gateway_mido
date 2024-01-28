@@ -20,7 +20,7 @@ public class CommentController {
         this.taskService = taskService;
     }
 
-    @GetMapping("{commentId}/modify")
+    @GetMapping("/{commentId}/modify")
     public String getCommentUpdateForm(@PathVariable("commentId") long commentId,
                                        Model model) {
         model.addAttribute("comment", taskService.getCommentByCommentId(commentId));

@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/comments/register")
 public class CommentRegisterController {
+    private final TaskService taskService;
+
     public CommentRegisterController(TaskService taskService) {
         this.taskService = taskService;
     }
-
-    private final TaskService taskService;
-
+    
     @PostMapping("/{taskId}")
     public String postComment(@PathVariable("taskId") long taskId,
                               @ModelAttribute CommentPostRequest commentPostRequest) {

@@ -33,14 +33,12 @@ public class MilestoneController {
         taskService.putMilestone(milestoneId, milestonePutRequest);
 
         return "redirect:/myprojects";
-
     }
 
     @PostMapping("/{milestoneId}/delete")
-    public String deleteMilestone(@PathVariable int milestoneId) {
+    public String deleteMilestone(@PathVariable long milestoneId) {
         taskService.deleteMilestone(milestoneId);
 
         return "redirect:/myprojects";
-
     }
 }

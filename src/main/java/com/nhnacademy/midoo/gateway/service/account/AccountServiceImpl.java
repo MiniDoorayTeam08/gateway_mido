@@ -1,6 +1,5 @@
 package com.nhnacademy.midoo.gateway.service.account;
 
-
 import com.nhnacademy.midoo.gateway.config.account.AccountApiServerProperties;
 import com.nhnacademy.midoo.gateway.domain.account.request.AccountCreateRequest;
 import com.nhnacademy.midoo.gateway.domain.account.request.AccountGetRequest;
@@ -9,7 +8,6 @@ import com.nhnacademy.midoo.gateway.domain.account.request.LoginRequest;
 import com.nhnacademy.midoo.gateway.domain.account.response.AccountResponse;
 import com.nhnacademy.midoo.gateway.domain.account.response.AccountsResponse;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -22,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-@Slf4j
 public class AccountServiceImpl implements AccountService {
     private final RestTemplate template;
     private final String accountUrl;
@@ -41,16 +38,12 @@ public class AccountServiceImpl implements AccountService {
         String url = accountUrl + "/accounts/status";
 
         HttpEntity<AccountStatusModifyRequest> requestEntity = new HttpEntity<>(request, httpHeaders);
-        ResponseEntity<String> responseEntity = template.exchange(
+        template.exchange(
                 url,
                 HttpMethod.PUT,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
                 });
-
-        if (responseEntity.getStatusCode() != HttpStatus.OK) {
-            throw new RuntimeException(); // status 수정 예외 던지기.
-        }
     }
 
 
@@ -109,7 +102,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountResponse matchIdPwd(LoginRequest request) {
+    public boolean matchIdPwd(LoginRequest request) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -124,10 +117,7 @@ public class AccountServiceImpl implements AccountService {
                 new ParameterizedTypeReference<>() {
                 });
 
-        if (responseEntity.getStatusCode() == HttpStatus.OK) {
-            return responseEntity.getBody();
-        }
-        throw new RuntimeException();
+        return HttpStatus.OK == responseEntity.getStatusCode();
     }
 
     @Override
